@@ -1,40 +1,64 @@
 function photographerTemplate(data) {
-    const { name, portrait, city, country, tagline, price } = data;
+    const { name, id, portrait, city, country, tagline, price } = data;
 
     const picture = `assets/photographers/${portrait}`;
+    const idNumber = data["id"];
 
     function getUserCardDOM() {
         const article = document.createElement("article");
-        const imgContainer = document.createElement("div");
-        imgContainer.classList.add("img-container");
-        const img = document.createElement("img");
-        img.setAttribute("src", picture);
-        const h2 = document.createElement("h2");
-        h2.textContent = name;
+        const pageLink = document.createElement("a");
 
-        h2.setAttribute("aria-label", "Aller à la page photographe de " + name);
+        function generateImg() {
+            const imgContainer = document.createElement("div");
+            const img = document.createElement("img");
 
-        img.setAttribute("alt", name);
+            imgContainer.classList.add("img-container");
+            img.setAttribute("src", picture);
+            img.setAttribute("alt", name);
+            imgContainer.appendChild(img);
+            article.appendChild(pageLink);
+            pageLink.appendChild(imgContainer);
+        }
 
-        imgContainer.appendChild(img);
-        article.appendChild(imgContainer);
-        article.appendChild(h2);
+        function generateName() {
+            const h2 = document.createElement("h2");
+            h2.textContent = name;
+            h2.setAttribute(
+                "aria-label",
+                "Aller à la page photographe de " + name
+            );
 
-        const h3 = document.createElement("h3");
-        h3.textContent = city + ", " + country;
-        article.appendChild(h3);
+            article.appendChild(h2);
+            article.appendChild(pageLink);
+            pageLink.appendChild(h2);
+        }
 
-        const p = document.createElement("p");
-        p.textContent = tagline;
-        p.classList.add("p-tagline");
+        function generateLocation() {
+            const h3 = document.createElement("h3");
+            h3.textContent = city + ", " + country;
+            article.appendChild(h3);
+        }
 
-        article.appendChild(p);
+        function generateTagline() {
+            const p = document.createElement("p");
+            p.textContent = tagline;
+            p.classList.add("p-tagline");
+            article.appendChild(p);
+        }
 
-        const pPrice = document.createElement("p");
-        pPrice.textContent = price + "€ / jour";
-        pPrice.classList.add("p-price");
-        article.appendChild(pPrice);
+        function generatePrice() {
+            const pPrice = document.createElement("p");
+            pPrice.textContent = price + "€ / jour";
+            pPrice.classList.add("p-price");
+            article.appendChild(pPrice);
+        }
 
+        generateImg();
+        generateName();
+        generateLocation();
+        generatePrice();
+        generateTagline();
+        pageLink.href = "./photographer.html?id=" + data["id"];
         return article;
     }
     return { getUserCardDOM };
