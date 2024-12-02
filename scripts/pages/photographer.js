@@ -34,7 +34,6 @@ async function displayPicture(photographers, numberPhotographerId) {
         console.log(
             photographer["id"] === numberPhotographerId ? photographer : ""
         );
-
         //on récupère bien Mimi Keel
     });
 }
@@ -92,14 +91,14 @@ async function displayMediaData(medias, numberPhotographerId) {
 
 // displayPhotographerData();
 
-async function init() {
-    const { photographers } = await getPhotographer();
+// async function init() {
+//     const { photographers } = await getPhotographer();
 
-    const { numberPhotographerId } = getParams();
-    const { medias } = await getMedias();
-    displayMediaData(medias, numberPhotographerId);
-    displayPicture(photographers, numberPhotographerId);
-    // headerTemplate();
-}
+//     const { numberPhotographerId } = getParams();
+//     const { medias } = await getMedias();
+//     displayMediaData(medias, numberPhotographerId);
+//     displayPicture(photographers, numberPhotographerId);
+//     // headerTemplate();
+// }
 
-init();
+// init();
