@@ -74,3 +74,71 @@ form input {
     border: none;
     border-radius: 5px;
 }
+
+.photograph-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-picture-container {
+    height: 200px;
+    width: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-bottom: 20px;
+
+    order: 2;
+}
+
+.profile-picture-container img {
+    display: block;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    /* overflow: hidden; */
+    transform: scale(1.2);
+    transform-origin: center;
+}
+
+.photographer-information-container {
+    order: 0;
+}
+
+.button-container {
+    order: 1;
+}
+
+.photographer-information-container h2 {
+    font-family: DM Sans;
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 83.33px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #d3573c;
+}
+
+.photographer-information-container h3 {
+    font-family: DM Sans;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 31.25px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #901c1c;
+}
+
+.photographer-information-container p {
+    font-family: DM Sans;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 23.44px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #525252;
+}
