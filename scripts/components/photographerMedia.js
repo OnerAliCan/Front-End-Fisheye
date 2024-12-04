@@ -29,7 +29,6 @@ function mediaTemplate(mediaData, data) {
     const fullNameSlice = fullNameArray.slice(0, -1);
     const firstName = fullNameSlice.toString();
 
-    //a decommenter quand on aura la fonction qui servira à afficher les media de chaque photographe
     const path = `assets/images/${firstName}/${mediaName}`;
     console.log(path);
 

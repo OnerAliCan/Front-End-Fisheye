@@ -1,20 +1,22 @@
-async function getMedias() {
+async function getPhotographer(urlIdNumber) {
     const response = await fetch("./data/photographers.json");
-    const media = await response.json();
-    const medias = media.media;
-    // console.log(typeof medias);
+    const data = await response.json();
+
+    const photographer = data.photographers.find(
+        (element) => element.id == urlIdNumber
+    );
+    if (photographer == undefined) {
+        window.location.href = "index.html";
+        return;
+    }
+
+    const medias = data.media.filter(
+        (element) => element.photographerId == urlIdNumber
+    );
+
     return {
+        photographer,
         medias,
-    };
-}
-
-async function getPhotographers() {
-    const response = await fetch("./data/photographers.json");
-    const photographes = await response.json();
-    const photographers = photographes.photographers;
-
-    return {
-        photographers,
     };
 }
 
@@ -28,41 +30,25 @@ function getParams() {
     };
 }
 
-async function displayData(photographers, urlIdNumber, medias) {
+function displayData(photographer, medias) {
     const main = document.querySelector("main");
     const mediaSection = document.querySelector(".media-section");
 
-    let photographerObject;
-    let mediaArray = [];
-    photographers.forEach((photographer) => {
-        if (photographer["id"] === urlIdNumber) {
-            photographerObject = photographer;
-        }
-    });
-
-    // const { name, id, portrait, city, country, tagline, price } = data;
-
-    medias.forEach((media) => {
-        if (media["photographerId"] === urlIdNumber) {
-            mediaArray.push(media);
-        }
-    });
-    console.log("en dehors de generatemedia " + photographerObject);
-
     function generateHeader() {
-        const headerModel = headerTemplate(photographerObject);
+        const headerModel = headerTemplate(photographer);
         const photographerCardDOM = headerModel.getPhotographerCardDOM();
         main.appendChild(photographerCardDOM);
     }
 
     function generatePrice() {
-        const priceModel = priceTemplate(photographerObject, mediaArray);
+        const priceModel = priceTemplate(photographer, medias);
         const priceDOM = priceModel.getPriceDOM();
         main.appendChild(priceDOM);
     }
+
     function generateMedia() {
-        mediaArray.forEach((mediaData) => {
-            const mediaModel = mediaTemplate(mediaData, photographerObject);
+        medias.forEach((mediaData) => {
+            const mediaModel = mediaTemplate(mediaData, photographer);
             const mediaDOM = mediaModel.getMediaDOM();
             mediaSection.appendChild(mediaDOM);
             main.appendChild(mediaSection);
@@ -75,10 +61,11 @@ async function displayData(photographers, urlIdNumber, medias) {
 }
 
 async function init() {
-    const { photographers } = await getPhotographers();
-    const { medias } = await getMedias();
-    const { urlIdNumber } = await getParams();
-    displayData(photographers, urlIdNumber, medias);
+    const { urlIdNumber } = getParams();
+    const { photographer, medias } = await getPhotographer(urlIdNumber);
+    displayData(photographer, medias);
 }
 
-init();
+window.onload = async function () {
+    await init();
+};

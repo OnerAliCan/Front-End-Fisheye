@@ -1,11 +1,20 @@
 #contact_modal {
-    display: none;
+    /* display: none; */
+    display: block;
+}
+
+.modal-body {
+    width: 100%;
 }
 
 .photograph-header {
     background-color: #fafafa;
     height: 300px;
     margin: 0 100px;
+}
+
+#message {
+    height: 170px;
 }
 
 .contact_button {
@@ -79,6 +88,7 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+    font-size: 36px;
 }
 
 .photograph-header {
