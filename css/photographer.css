@@ -21,6 +21,12 @@
     cursor: pointer;
 }
 
+.contact_button:hover,
+.contact_button:focus {
+    background-color: #db8876;
+    color: #000000;
+}
+
 .modal {
     border-radius: 5px;
     background-color: #db8876;
@@ -141,4 +147,34 @@ form input {
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
     color: #525252;
+}
+
+.price-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 376px;
+    height: 89px;
+    border-radius: 5px 5px 0 0;
+    background-color: #db8876;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 36px;
+}
+
+.media-container {
+    display: flex;
+    overflow: hidden;
+}
+
+.media-container img,
+.media-container video {
+    display: block;
+    width: 350px;
+    height: 300px;
+    transform-origin: center;
+    object-fit: cover;
 }
