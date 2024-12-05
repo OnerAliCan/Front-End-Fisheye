@@ -55,6 +55,9 @@ function displayData(photographer, medias) {
         });
     }
 
+    document
+        .getElementById("display-modal")
+        .addEventListener("click", displayModal(photographer));
     generateHeader();
     generatePrice();
     generateMedia();

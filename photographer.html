@@ -11,7 +11,7 @@
         <title>Fisheye - photographe</title>
     </head>
     <body>
-        <header>
+        <header id="modalHeader">
             <a href="index.html">
                 <img src="assets/images/logo.png" class="logo" />
             </a>
@@ -19,69 +19,69 @@
         <main id="main">
             <div class="photograph-header">
                 <div class="button-container">
-                    <button class="contact_button" onclick="displayModal()">
+                    <button class="contact-button" id="display-modal">
                         Contactez-moi
                     </button>
                 </div>
             </div>
             <div class="media-section"></div>
         </main>
-        <div id="contact_modal">
-            <div class="modal">
-                <header>
+        <dialog id="modal">
+            <header id="modalHeader">
+                <div id="contact-name-container">
                     <h2>Contactez-moi</h2>
+                    <h2 id="contact-me-name"></h2>
+                </div>
+                <div class="close-modal-container">
                     <img src="assets/icons/close.svg" onclick="closeModal()" />
-                </header>
-                <div class="modal-body">
-                    <form
-                        name="reserve"
-                        action="index.html"
-                        onsubmit="return validate();"
-                        novalidate
-                    >
-                        <div class="formData" data-error-visible="false">
-                            <label for="first">Prénom</label><br />
+                </div>
+            </header>
+            <div class="modal-body">
+                <form
+                    name="reserve"
+                    action="index.html"
+                    onsubmit="return validate();"
+                    novalidate
+                >
+                    <div class="formData" data-error-visible="false">
+                        <label for="first">Prénom</label><br />
+                        <input
+                            class="text-control"
+                            type="text"
+                            id="first"
+                            name="first"
+                            minlength="2"
+                        /><br />
+
+                        <div class="formData">
+                            <label for="last">Nom</label><br />
                             <input
                                 class="text-control"
                                 type="text"
-                                id="first"
-                                name="first"
-                                minlength="2"
+                                id="last"
+                                name="last"
                             /><br />
-
-                            <div class="formData">
-                                <label for="last">Nom</label><br />
-                                <input
-                                    class="text-control"
-                                    type="text"
-                                    id="last"
-                                    name="last"
-                                /><br />
-                            </div>
-                            <div class="formData">
-                                <label for="email">E-mail</label><br />
-                                <input
-                                    class="text-control"
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                /><br />
-                            </div>
-                            <div class="formData">
-                                <label for="message">Votre Message</label><br />
-                                <input
-                                    class="text-control"
-                                    type="text"
-                                    id="message"
-                                    name="message"
-                                /><br />
-                            </div>
                         </div>
-                        <button class="contact_button">Envoyer</button>
-                    </form>
-                </div>
+                        <div class="formData">
+                            <label for="email">E-mail</label><br />
+                            <input
+                                class="text-control"
+                                type="email"
+                                id="email"
+                                name="email"
+                            /><br />
+                        </div>
+                        <div class="formData">
+                            <label for="message">Votre Message</label><br />
+
+                            <textarea name="message" id="message"></textarea
+                            ><br />
+                        </div>
+                    </div>
+                    <button class="contact-button">Envoyer</button>
+                </form>
             </div>
-        </div>
+        </dialog>
         <script src="/scripts/pages/photographer.js"></script>
         <script src="/scripts/components/photographerHeader.js"></script>
         <script src="/scripts/components/photographerPrice.js"></script>
