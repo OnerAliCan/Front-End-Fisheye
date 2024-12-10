@@ -54,19 +54,48 @@ function displayData(photographer, medias) {
             main.appendChild(mediaSection);
         });
     }
+    // console.log(photographer);
 
-    document
-        .getElementById("display-modal")
-        .addEventListener("click", displayModal(photographer));
     generateHeader();
     generatePrice();
     generateMedia();
+}
+
+function displayModal(photographer) {
+    // console.log(photographer);
+    document
+        .getElementById("display-modal")
+        .addEventListener("click", () => generateModal(photographer));
+}
+
+function displayLightbox(medias) {
+    // const mediaId = medias.filter(
+    //     (element) => element.photographerId == urlIdNumber
+    // );
+    const lightbox = document.getElementById("lightbox");
+
+    const mediaContainerArray =
+        document.getElementsByClassName("media-container");
+
+    for (let i = 0; i < mediaContainerArray.length; i++) {
+        mediaContainerArray[i].addEventListener("click", () => {
+            const lightboxResult = generateLightbox(medias[i]);
+            const lightboxDOM = lightboxResult.getLightBoxDOM();
+
+            lightbox.innerHTML = "";
+            lightbox.appendChild(lightboxDOM);
+            console.log(lightbox);
+            lightbox.showModal();
+        });
+    }
 }
 
 async function init() {
     const { urlIdNumber } = getParams();
     const { photographer, medias } = await getPhotographer(urlIdNumber);
     displayData(photographer, medias);
+    displayModal(photographer);
+    displayLightbox(medias);
 }
 
 window.onload = async function () {

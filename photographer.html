@@ -19,7 +19,7 @@
         <main id="main">
             <div class="photograph-header">
                 <div class="button-container">
-                    <button class="contact-button" id="display-modal">
+                    <button class="contact-button" id="display-modal" >
                         Contactez-moi
                     </button>
                 </div>
@@ -41,51 +41,55 @@
                     name="reserve"
                     action="index.html"
                     onsubmit="return validate();"
-                    novalidate
                 >
                     <div class="formData" data-error-visible="false">
-                        <label for="first">Prénom</label><br />
+                        <label for="first">Prénom</label>
                         <input
                             class="text-control"
                             type="text"
                             id="first"
                             name="first"
                             minlength="2"
-                        /><br />
+                        />
+                        </div>
 
                         <div class="formData">
-                            <label for="last">Nom</label><br />
+                            <label for="last">Nom</label>
                             <input
                                 class="text-control"
                                 type="text"
                                 id="last"
                                 name="last"
-                            /><br />
+                            />
                         </div>
                         <div class="formData">
-                            <label for="email">E-mail</label><br />
+                            <label for="email">E-mail</label>
                             <input
                                 class="text-control"
                                 type="email"
                                 id="email"
                                 name="email"
-                            /><br />
+                            />
                         </div>
                         <div class="formData">
-                            <label for="message">Votre Message</label><br />
+                            <label for="message">Votre Message</label>
 
                             <textarea name="message" id="message"></textarea
-                            ><br />
+                            >
                         </div>
                     </div>
-                    <button class="contact-button">Envoyer</button>
+                    <button class="contact-button" id="send-button">Envoyer</button>
                 </form>
             </div>
+        </dialog>
+        <dialog id="lightbox">
         </dialog>
         <script src="/scripts/pages/photographer.js"></script>
         <script src="/scripts/components/photographerHeader.js"></script>
         <script src="/scripts/components/photographerPrice.js"></script>
         <script src="/scripts/components/photographerMedia.js"></script>
         <script src="/scripts/utils/contactForm.js"></script>
+        <script src="/scripts/components/lightbox.js"></script>
+
     </body>
 </html>

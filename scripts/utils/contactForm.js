@@ -1,4 +1,4 @@
-function displayModal(data) {
+function generateModal(data) {
     console.log(data["name"]);
     const modal = document.getElementById("modal");
     modal.showModal();
@@ -82,7 +82,7 @@ function verifyEmail() {
     }
 }
 
-//nom de famille
+//message
 
 function verifyMessage() {
     if (document.getElementById("message").value.length < 1) {

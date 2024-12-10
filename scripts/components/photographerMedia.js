@@ -15,7 +15,6 @@ function mediaTemplate(mediaData, data) {
         price: photographerPrice,
     } = data;
 
-    // console.log(mediaData);
     let mediaName;
 
     if (typeof image !== "undefined") {
@@ -24,13 +23,8 @@ function mediaTemplate(mediaData, data) {
         mediaName = video;
     }
 
-    const fullNameString = name;
-    const fullNameArray = fullNameString.split(" ");
-    const fullNameSlice = fullNameArray.slice(0, -1);
-    const firstName = fullNameSlice.toString();
-
-    const path = `assets/images/${firstName}/${mediaName}`;
-    console.log(path);
+    const path = `assets/images/${photographerId}/${mediaName}`;
+    // console.log(path);
 
     function getMediaDOM() {
         // console.log("function getMediaDOM");
@@ -46,15 +40,15 @@ function mediaTemplate(mediaData, data) {
                 mediaImg.setAttribute("src", path);
                 mediaContainer.appendChild(mediaImg);
             } else {
-                const mediaVideoContainer = document.createElement("video");
+                const mediaVideo = document.createElement("video");
                 const mediaVideoSource = document.createElement("source");
                 mediaContainer.classList.add("media-container");
                 mediaVideoSource.setAttribute("src", path);
-                mediaVideoContainer.setAttribute("controls", "");
-                mediaVideoContainer.appendChild(mediaVideoSource);
-                mediaContainer.appendChild(mediaVideoContainer);
+                mediaVideo.setAttribute("controls", "");
+                mediaVideo.appendChild(mediaVideoSource);
+                mediaContainer.appendChild(mediaVideo);
             }
-
+            mediaContainer.id = "media-container-lightbox";
             mediaArticle.appendChild(mediaContainer);
         }
 
