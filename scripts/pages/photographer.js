@@ -54,7 +54,6 @@ function displayData(photographer, medias) {
             main.appendChild(mediaSection);
         });
     }
-    // console.log(photographer);
 
     generateHeader();
     generatePrice();
@@ -62,49 +61,61 @@ function displayData(photographer, medias) {
 }
 
 function displayModal(photographer) {
-    // console.log(photographer);
     document
         .getElementById("display-modal")
         .addEventListener("click", () => generateModal(photographer));
 }
 
 function displayLightbox(medias) {
-    // const mediaId = medias.filter(
-    //     (element) => element.photographerId == urlIdNumber
-    // );
-    const lightbox = document.getElementById("lightbox");
-
     const mediaContainerArray =
         document.getElementsByClassName("media-container");
 
-    for (let i = 0; i < mediaContainerArray.length; i++) {
+    const mediaContainerArrayLength = mediaContainerArray.length;
+
+    for (let i = 0; i < mediaContainerArrayLength; i++) {
         mediaContainerArray[i].addEventListener("click", () => {
+            let currentIndex = i;
+            const lightbox = document.getElementById("lightbox");
             const lightboxResult = generateLightbox(medias[i]);
-            const lightboxDOM = lightboxResult.getLightBoxDOM();
 
-            lightbox.innerHTML = "";
-            const leftContainer = document.createElement("div");
-            leftContainer.classList.add("left-arrow-container");
-
-            const leftArrow = document.createElement("img");
-            leftArrow.setAttribute("src", "assets/icons/chevron-left.svg");
-
-            leftContainer.appendChild(leftArrow);
-
-            const closeContainer = document.createElement("div");
-            closeContainer.classList.add("close-lightbox-container");
-            const close = document.createElement("img");
-            close.setAttribute("src", "assets/icons/close-lightbox.svg");
-            close.setAttribute("onclick", "closeModal()");
-
-            const rightArrow = document.createElement("img");
-            rightArrow.setAttribute("src", "assets/icons/chevron-right.svg");
-            closeContainer.appendChild(close);
-            closeContainer.appendChild(rightArrow);
-            lightbox.appendChild(leftContainer);
-            lightbox.appendChild(lightboxDOM);
-            lightbox.appendChild(closeContainer);
+            lightboxResult.getLightboxDOM(
+                lightbox,
+                medias,
+                medias[currentIndex],
+                currentIndex
+            );
             lightbox.showModal();
+            console.log(document.querySelector(".lightbox-container"));
+
+            document
+                .getElementById("left-arrow-img")
+                .addEventListener("click", () => {
+                    console.log(document.querySelector(".lightbox-container"));
+                    console.log("click!");
+                    currentIndex = getPreviousImg(
+                        currentIndex,
+                        mediaContainerArrayLength
+                    );
+                    console.log("Nouvel index : ", currentIndex);
+                    const updatedLightboxResult = generateLightbox(
+                        medias[currentIndex]
+                    );
+                    // lightbox.innerHTML = "";
+                    updatedLightboxResult.getLightboxDOM(
+                        lightbox,
+                        medias,
+                        medias[currentIndex],
+                        currentIndex
+                    );
+                });
+
+            function getPreviousImg(value, mediaContainerArrayLength) {
+                value--;
+                if (value < 0) {
+                    value = mediaContainerArrayLength - 1;
+                }
+                return value;
+            }
         });
     }
 }
