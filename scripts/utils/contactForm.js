@@ -11,6 +11,9 @@ function generateModal(data) {
 function closeModal() {
     const modal = document.getElementById("modal");
     modal.close();
+
+    const lightboxModal = document.getElementById("lightbox");
+    lightboxModal.close();
 }
 
 // function validate

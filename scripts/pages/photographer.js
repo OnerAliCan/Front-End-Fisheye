@@ -83,8 +83,27 @@ function displayLightbox(medias) {
             const lightboxDOM = lightboxResult.getLightBoxDOM();
 
             lightbox.innerHTML = "";
+            const leftContainer = document.createElement("div");
+            leftContainer.classList.add("left-arrow-container");
+
+            const leftArrow = document.createElement("img");
+            leftArrow.setAttribute("src", "assets/icons/chevron-left.svg");
+
+            leftContainer.appendChild(leftArrow);
+
+            const closeContainer = document.createElement("div");
+            closeContainer.classList.add("close-lightbox-container");
+            const close = document.createElement("img");
+            close.setAttribute("src", "assets/icons/close-lightbox.svg");
+            close.setAttribute("onclick", "closeModal()");
+
+            const rightArrow = document.createElement("img");
+            rightArrow.setAttribute("src", "assets/icons/chevron-right.svg");
+            closeContainer.appendChild(close);
+            closeContainer.appendChild(rightArrow);
+            lightbox.appendChild(leftContainer);
             lightbox.appendChild(lightboxDOM);
-            console.log(lightbox);
+            lightbox.appendChild(closeContainer);
             lightbox.showModal();
         });
     }
