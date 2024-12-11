@@ -1,11 +1,5 @@
-function generateModal(data) {
-    console.log(data["name"]);
-    const modal = document.getElementById("modal");
-    modal.showModal();
-
-    const contactMeName = document.querySelector("#contact-me-name");
-    contactMeName.textContent = data["name"];
-    // console.log(photographerName);
+function displayModal() {
+    document.getElementById("modal").showModal();
 }
 
 function closeModal() {

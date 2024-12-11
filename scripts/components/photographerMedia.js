@@ -1,19 +1,9 @@
-function mediaTemplate(mediaData, data) {
+function mediaTemplate(mediaData, index) {
     // console.log(mediaData);
-    // console.log(typeof data["name"]);
+    // console.log(typeof photographer["name"]);
 
     const { id, photographerId, title, image, likes, date, price, video } =
         mediaData;
-    // console.log(video);
-    const {
-        name,
-        id: userId,
-        portrait,
-        city,
-        country,
-        tagline,
-        price: photographerPrice,
-    } = data;
 
     let mediaName;
 
@@ -49,6 +39,22 @@ function mediaTemplate(mediaData, data) {
                 mediaContainer.appendChild(mediaVideo);
             }
             mediaContainer.id = "media-container-lightbox";
+            mediaContainer.addEventListener("click", () => {
+            let currentIndex = index;
+            const lightbox = document.getElementById("lightbox");
+            const lightboxResult = generateLightbox(medias[index]);
+
+            lightboxResult.getLightboxDOM(
+                lightbox,
+                medias,
+                medias[currentIndex],
+                currentIndex
+            );
+            lightbox.showModal();
+            console.log(document.querySelector(".lightbox-container"));
+
+        });
+
             mediaArticle.appendChild(mediaContainer);
         }
 

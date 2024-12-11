@@ -31,13 +31,13 @@ function getParams() {
 }
 
 function displayData(photographer, medias) {
+    debugger;
     const main = document.querySelector("main");
     const mediaSection = document.querySelector(".media-section");
 
     function generateHeader() {
         const headerModel = headerTemplate(photographer);
-        const photographerCardDOM = headerModel.getPhotographerCardDOM();
-        main.appendChild(photographerCardDOM);
+        headerModel.getPhotographerCardDOM();
     }
 
     function generatePrice() {
@@ -47,11 +47,11 @@ function displayData(photographer, medias) {
     }
 
     function generateMedia() {
-        medias.forEach((mediaData) => {
-            const mediaModel = mediaTemplate(mediaData, photographer);
+        medias.forEach((mediaData, index) => {
+            const mediaModel = mediaTemplate(mediaData, index);
             const mediaDOM = mediaModel.getMediaDOM();
             mediaSection.appendChild(mediaDOM);
-            main.appendChild(mediaSection);
+            //main.appendChild(mediaSection);
         });
     }
 
@@ -60,13 +60,15 @@ function displayData(photographer, medias) {
     generateMedia();
 }
 
-function displayModal(photographer) {
+function initModal(photographer) {
     document
         .getElementById("display-modal")
-        .addEventListener("click", () => generateModal(photographer));
+        .addEventListener("click", () => displayModal());
+    document.querySelector("#contact-me-name").textContent =
+        photographer["name"];
 }
 
-function displayLightbox(medias) {
+function initMedias(medias) {
     const mediaContainerArray =
         document.getElementsByClassName("media-container");
 
@@ -92,6 +94,7 @@ function displayLightbox(medias) {
                 .addEventListener("click", () => {
                     console.log(document.querySelector(".lightbox-container"));
                     console.log("click!");
+                    debugger;
                     currentIndex = getPreviousImg(
                         currentIndex,
                         mediaContainerArrayLength
@@ -124,8 +127,8 @@ async function init() {
     const { urlIdNumber } = getParams();
     const { photographer, medias } = await getPhotographer(urlIdNumber);
     displayData(photographer, medias);
-    displayModal(photographer);
-    displayLightbox(medias);
+    initMedias(medias);
+    initModal(photographer);
 }
 
 window.onload = async function () {
