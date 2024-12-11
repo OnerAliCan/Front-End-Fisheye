@@ -247,7 +247,7 @@ article {
     overflow: hidden;
 }
 
-.lightbox-container {
+#lightbox-img {
     width: 1050px;
     height: 900px;
     display: flex;
@@ -256,8 +256,8 @@ article {
     overflow: hidden;
 }
 
-.lightbox-container img,
-.lightbox-container video {
+#lightbox-img img,
+#lightbox-img video {
     width: 1050px;
     height: 900px;
     object-fit: cover;

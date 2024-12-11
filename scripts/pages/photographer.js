@@ -31,7 +31,6 @@ function getParams() {
 }
 
 function displayData(photographer, medias) {
-    debugger;
     const main = document.querySelector("main");
     const mediaSection = document.querySelector(".media-section");
 
@@ -76,6 +75,10 @@ function initMedias(medias) {
 
     for (let i = 0; i < mediaContainerArrayLength; i++) {
         mediaContainerArray[i].addEventListener("click", () => {
+            const lightboxContainer = document.getElementById("lightbox-img");
+
+            lightboxContainer.innerHTML = "";
+
             let currentIndex = i;
             const lightbox = document.getElementById("lightbox");
             const lightboxResult = generateLightbox(medias[i]);
@@ -84,39 +87,76 @@ function initMedias(medias) {
                 lightbox,
                 medias,
                 medias[currentIndex],
-                currentIndex
+                currentIndex,
+                lightboxContainer
             );
             lightbox.showModal();
-            console.log(document.querySelector(".lightbox-container"));
 
             document
                 .getElementById("left-arrow-img")
                 .addEventListener("click", () => {
-                    console.log(document.querySelector(".lightbox-container"));
+                    lightboxContainer.innerHTML = "";
+
                     console.log("click!");
-                    debugger;
                     currentIndex = getPreviousImg(
                         currentIndex,
                         mediaContainerArrayLength
                     );
-                    console.log("Nouvel index : ", currentIndex);
+
                     const updatedLightboxResult = generateLightbox(
                         medias[currentIndex]
                     );
-                    // lightbox.innerHTML = "";
                     updatedLightboxResult.getLightboxDOM(
                         lightbox,
                         medias,
                         medias[currentIndex],
-                        currentIndex
+                        currentIndex,
+                        lightboxContainer
                     );
                 });
 
             function getPreviousImg(value, mediaContainerArrayLength) {
                 value--;
+
                 if (value < 0) {
                     value = mediaContainerArrayLength - 1;
                 }
+                console.log(value);
+
+                return value;
+            }
+
+            document
+                .getElementById("right-arrow-img")
+                .addEventListener("click", () => {
+                    lightboxContainer.innerHTML = "";
+
+                    console.log("click!");
+                    currentIndex = getNextImg(
+                        currentIndex,
+                        mediaContainerArrayLength
+                    );
+
+                    const updatedLightboxResult = generateLightbox(
+                        medias[currentIndex]
+                    );
+                    updatedLightboxResult.getLightboxDOM(
+                        lightbox,
+                        medias,
+                        medias[currentIndex],
+                        currentIndex,
+                        lightboxContainer
+                    );
+                });
+
+            function getNextImg(value, mediaContainerArrayLength) {
+                value++;
+
+                if (value > mediaContainerArrayLength - 1) {
+                    value = 0;
+                }
+                console.log(value);
+
                 return value;
             }
         });

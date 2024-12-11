@@ -1,7 +1,4 @@
 function mediaTemplate(mediaData, index) {
-    // console.log(mediaData);
-    // console.log(typeof photographer["name"]);
-
     const { id, photographerId, title, image, likes, date, price, video } =
         mediaData;
 
@@ -14,12 +11,8 @@ function mediaTemplate(mediaData, index) {
     }
 
     const path = `assets/images/${photographerId}/${mediaName}`;
-    // console.log(path);
 
     function getMediaDOM() {
-        // console.log("function getMediaDOM");
-        // function
-
         const mediaArticle = document.createElement("article");
         const mediaContainer = document.createElement("div");
 
@@ -40,20 +33,18 @@ function mediaTemplate(mediaData, index) {
             }
             mediaContainer.id = "media-container-lightbox";
             mediaContainer.addEventListener("click", () => {
-            let currentIndex = index;
-            const lightbox = document.getElementById("lightbox");
-            const lightboxResult = generateLightbox(medias[index]);
+                let currentIndex = index;
+                const lightbox = document.getElementById("lightbox");
+                const lightboxResult = generateLightbox(mediaData[index]);
 
-            lightboxResult.getLightboxDOM(
-                lightbox,
-                medias,
-                medias[currentIndex],
-                currentIndex
-            );
-            lightbox.showModal();
-            console.log(document.querySelector(".lightbox-container"));
-
-        });
+                lightboxResult.getLightboxDOM(
+                    lightbox,
+                    medias,
+                    medias[currentIndex],
+                    currentIndex
+                );
+                lightbox.showModal();
+            });
 
             mediaArticle.appendChild(mediaContainer);
         }
