@@ -95,25 +95,35 @@ function initMedias(medias) {
             document
                 .getElementById("left-arrow-img")
                 .addEventListener("click", () => {
-                    lightboxContainer.innerHTML = "";
-
-                    console.log("click!");
-                    currentIndex = getPreviousImg(
-                        currentIndex,
-                        mediaContainerArrayLength
-                    );
-
-                    const updatedLightboxResult = generateLightbox(
-                        medias[currentIndex]
-                    );
-                    updatedLightboxResult.getLightboxDOM(
-                        lightbox,
-                        medias,
-                        medias[currentIndex],
-                        currentIndex,
-                        lightboxContainer
-                    );
+                    swipeLeft();
                 });
+
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "ArrowLeft") {
+                    swipeLeft();
+                }
+            });
+
+            function swipeLeft() {
+                lightboxContainer.innerHTML = "";
+
+                console.log("click!");
+                currentIndex = getPreviousImg(
+                    currentIndex,
+                    mediaContainerArrayLength
+                );
+
+                const updatedLightboxResult = generateLightbox(
+                    medias[currentIndex]
+                );
+                updatedLightboxResult.getLightboxDOM(
+                    lightbox,
+                    medias,
+                    medias[currentIndex],
+                    currentIndex,
+                    lightboxContainer
+                );
+            }
 
             function getPreviousImg(value, mediaContainerArrayLength) {
                 value--;
@@ -129,25 +139,35 @@ function initMedias(medias) {
             document
                 .getElementById("right-arrow-img")
                 .addEventListener("click", () => {
-                    lightboxContainer.innerHTML = "";
-
-                    console.log("click!");
-                    currentIndex = getNextImg(
-                        currentIndex,
-                        mediaContainerArrayLength
-                    );
-
-                    const updatedLightboxResult = generateLightbox(
-                        medias[currentIndex]
-                    );
-                    updatedLightboxResult.getLightboxDOM(
-                        lightbox,
-                        medias,
-                        medias[currentIndex],
-                        currentIndex,
-                        lightboxContainer
-                    );
+                    swipeRight();
                 });
+
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "ArrowRight") {
+                    swipeRight();
+                }
+            });
+
+            function swipeRight() {
+                lightboxContainer.innerHTML = "";
+
+                console.log("click!");
+                currentIndex = getNextImg(
+                    currentIndex,
+                    mediaContainerArrayLength
+                );
+
+                const updatedLightboxResult = generateLightbox(
+                    medias[currentIndex]
+                );
+                updatedLightboxResult.getLightboxDOM(
+                    lightbox,
+                    medias,
+                    medias[currentIndex],
+                    currentIndex,
+                    lightboxContainer
+                );
+            }
 
             function getNextImg(value, mediaContainerArrayLength) {
                 value++;

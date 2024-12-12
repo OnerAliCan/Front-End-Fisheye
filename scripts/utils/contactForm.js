@@ -9,7 +9,6 @@ function closeModal() {
     const lightboxModal = document.getElementById("lightbox");
 
     lightboxModal.close();
-    document.getElementById("lightbox-img").innerHTML = "";
 }
 
 // function validate
