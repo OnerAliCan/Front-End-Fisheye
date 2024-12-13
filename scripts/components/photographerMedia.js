@@ -1,8 +1,9 @@
-function mediaTemplate(mediaData, index, mediaArrayLength, likesTotalNumber) {
+function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
 	const { id, photographerId, title, image, likes, date, price, video } =
 		mediaData;
 
 	let mediaName;
+	let mediaLiked = false; // Pour suivre si ce média est liké ou non
 
 	if (typeof image !== "undefined") {
 		mediaName = image;
@@ -10,74 +11,29 @@ function mediaTemplate(mediaData, index, mediaArrayLength, likesTotalNumber) {
 		mediaName = video;
 	}
 	const path = `assets/images/${photographerId}/${mediaName}`;
-	let totalLikesMax = 0;
 	const mediaLikes = document.createElement("p");
 
-	//likes
+	// Initialisation du nombre de likes pour ce média
 	let mediaLikesCount = likes;
-	let mediaLikes1 = likes;
+	mediaLikes.textContent = `${mediaLikesCount} likes`;
 
-	if (typeof totalLikesAddition === "undefined") {
-		totalLikesAddition = 0;
-		totalLikesAddition = totalLikesAddition += likes;
-	} else {
-		totalLikesAddition = totalLikesAddition += likes;
-	}
-
-	document.getElementById("total-likes-container").textContent =
-		likesTotalNumber + " likes";
-
-	let i;
+	// Ajout de l'événement de clic sur le nombre de likes
 	mediaLikes.addEventListener("click", () => {
-		// document.getElementById("total-likes-container").textContent =
-		// 	likesTotalNumber + " likes";
-
-		mediaLikesCount = addLike(
-			likes,
-			mediaLikesCount,
-			mediaLikes,
-			likesTotalNumber
-		);
-
-		if (mediaLikesCount != mediaLikes1) {
-			console.log("1 " + likesTotalNumber);
-			console.log("2 " + mediaLikesCount);
-			console.log("3 " + mediaLikes1);
-
-			likesTotalNumber = likesTotalNumber + mediaLikesCount - mediaLikes1;
-			console.log("4 " + likesTotalNumber);
-		}
-		console.log("5 " + likesTotalNumber);
-
-		// likesTotalNumber = addTotalLike(
-		// 	likes,
-		// 	mediaLikesCount,
-		// 	mediaLikes,
-		// 	likesTotalNumber
-		// );
-	});
-
-	function addLike(likes, mediaLikesCount, mediaLikes, likesTotalNumber) {
-		if (mediaLikesCount > likes) {
-			mediaLikesCount = likes;
-			mediaLikes.textContent = mediaLikesCount + " likes";
-			return mediaLikesCount;
+		if (mediaLiked) {
+			// Si déjà liké, on décrémente
+			mediaLikesCount--;
+			mediaLiked = false;
+			updateTotalLikes(-1); // Réduire le compteur global des likes
 		} else {
-			//doit augmenter
-			// let i = 1;
-			// console.log("i dans addlike = " + i);
+			// Si pas liké, on incrémente
 			mediaLikesCount++;
-			mediaLikes.textContent = mediaLikesCount + " likes";
-			return mediaLikesCount;
+			mediaLiked = true;
+			updateTotalLikes(1); // Augmenter le compteur global des likes
 		}
-	}
 
-	// function addTotalLike(totalLikesMax) {
-	// 	let totalLikesMaxInitial;
-	// 	totalLikesMaxInitial++;
-	// 	totalLikesMax = totalLikesMaxInitial;
-	// 	return totalLikesMaxInitial;
-	// }
+		// Mise à jour du nombre de likes pour ce média
+		mediaLikes.textContent = `${mediaLikesCount} likes`;
+	});
 
 	function getMediaDOM() {
 		const mediaArticle = document.createElement("article");
@@ -88,6 +44,7 @@ function mediaTemplate(mediaData, index, mediaArrayLength, likesTotalNumber) {
 		mediaTitle.classList.add("media-title");
 		mediaLikes.classList.add("media-likes");
 
+		// Générer l'élément média (image ou vidéo)
 		function generateMedias() {
 			if (typeof image !== "undefined") {
 				const mediaImg = document.createElement("img");
@@ -103,30 +60,13 @@ function mediaTemplate(mediaData, index, mediaArrayLength, likesTotalNumber) {
 				mediaVideo.appendChild(mediaVideoSource);
 				mediaContainer.appendChild(mediaVideo);
 			}
-			mediaContainer.id = "media-container-lightbox";
-			mediaContainer.addEventListener("click", () => {
-				let currentIndex = index;
-				const lightbox = document.getElementById("lightbox");
-				const lightboxResult = generateLightbox(mediaData[index]);
-
-				lightboxResult.getLightboxDOM(
-					lightbox,
-					medias,
-					medias[currentIndex],
-					currentIndex
-				);
-				lightbox.showModal();
-			});
 
 			mediaArticle.appendChild(mediaContainer);
 			mediaTitle.textContent = title;
-			// mediaLikes.textContent = mediaLikesCount;
-
 			mediaTitleContainer.appendChild(mediaTitle);
 			mediaTitleContainer.appendChild(mediaLikes);
 			mediaArticle.appendChild(mediaTitleContainer);
 		}
-		mediaLikes.textContent = mediaLikesCount + " likes";
 
 		generateMedias();
 		return mediaArticle;

@@ -34,47 +34,57 @@ function getParams() {
 function displayData(photographer, medias) {
 	const main = document.querySelector("main");
 	const mediaSection = document.querySelector(".media-section");
-	const mediaArrayLength = medias.length;
 
+	// Initialiser le compteur global des likes
+	let likesTotalNumber = medias.reduce(
+		(total, media) => total + media.likes,
+		0
+	);
+	// Fonction pour mettre à jour le compteur global des likes et son affichage
+	function updateTotalLikes(change) {
+		likesTotalNumber += change;
+		document.getElementById(
+			"total-likes-container"
+		).textContent = `${likesTotalNumber} likes`;
+		console.log(`Total des likes mis à jour : ${likesTotalNumber}`);
+	}
+
+	// Générer l'en-tête du photographe
 	function generateHeader() {
 		const headerModel = headerTemplate(photographer);
 		headerModel.getPhotographerCardDOM();
 	}
 
+	// Générer les prix du photographe
 	function generatePrice() {
 		const priceModel = priceTemplate(photographer, medias);
 		const priceDOM = priceModel.getPriceDOM();
+		// Si vous voulez ajouter le prix au DOM, décommentez cette ligne
 		// main.appendChild(priceDOM);
 	}
 
-	function getTotalLikes() {
-		let likesNumber = medias.map((media) => media.likes);
-		let totalLikes = 0;
-		likesNumber.forEach((likeValue) => {
-			totalLikes += likeValue;
-		});
-		return totalLikes;
-	}
-
+	// Générer les médias et les ajouter à l'interface
 	function generateMedia() {
-		const likesTotalNumber = getTotalLikes();
 		medias.forEach((mediaData, index) => {
 			const mediaModel = mediaTemplate(
 				mediaData,
 				index,
-				mediaArrayLength,
-				likesTotalNumber
+				medias.length,
+				updateTotalLikes // On passe la fonction de mise à jour globale
 			);
 
 			const mediaDOM = mediaModel.getMediaDOM();
-			mediaSection.appendChild(mediaDOM);
-			//main.appendChild(mediaSection);
+			mediaSection.appendChild(mediaDOM); // Ajouter chaque média au DOM
 		});
 	}
 
+	// Appel des fonctions pour générer les différentes parties
 	generateHeader();
 	generatePrice();
-	generateMedia();
+	generateMedia(); // Génère et affiche les médias
+
+	// Afficher le compteur global des likes au chargement
+	updateTotalLikes(0); // Initialise le total des likes dans l'affichage
 }
 
 function initModal(photographer) {
