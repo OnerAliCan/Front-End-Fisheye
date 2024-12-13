@@ -1,35 +1,44 @@
 function generateLightbox(mediaData) {
-    const { id, photographerId, title, image, likes, date, price, video } =
-        mediaData;
+	const { id, photographerId, title, image, likes, date, price, video } =
+		mediaData;
 
-    let mediaName;
+	let mediaName;
 
-    if (typeof image !== "undefined") {
-        mediaName = image;
-    } else {
-        mediaName = video;
-    }
+	if (typeof image !== "undefined") {
+		mediaName = image;
+	} else {
+		mediaName = video;
+	}
 
-    const path = `assets/images/${photographerId}/${mediaName}`;
+	const path = `assets/images/${photographerId}/${mediaName}`;
+	const lightboxTitle = document.getElementById("lightbox-media-title");
+	// let lightboxMediaTitle = title;
 
-    function getLightboxDOM(lightbox, medias, media, i, lightboxContainer) {
-        function lightboxContent(lightbox) {
-            if (typeof image !== "undefined") {
-                const lightboxImg = document.createElement("img");
-                lightboxImg.setAttribute("src", path);
-                lightboxContainer.appendChild(lightboxImg);
-            } else {
-                const lightboxVideo = document.createElement("video");
-                const lightboxVideoSource = document.createElement("source");
-                lightboxVideoSource.setAttribute("src", path);
-                lightboxVideo.setAttribute("controls", "");
-                lightboxVideo.appendChild(lightboxVideoSource);
-                lightboxContainer.appendChild(lightboxVideo);
-            }
-        }
+	function getLightboxDOM(
+		lightbox,
+		medias,
+		media,
+		i,
+		lightboxMediaContainer
+	) {
+		function lightboxContent(lightbox) {
+			if (typeof image !== "undefined") {
+				const lightboxImg = document.createElement("img");
+				lightboxImg.setAttribute("src", path);
+				lightboxMediaContainer.appendChild(lightboxImg);
+			} else {
+				const lightboxVideo = document.createElement("video");
+				const lightboxVideoSource = document.createElement("source");
+				lightboxVideoSource.setAttribute("src", path);
+				lightboxVideo.setAttribute("controls", "");
+				lightboxVideo.appendChild(lightboxVideoSource);
+				lightboxMediaContainer.appendChild(lightboxVideo);
+			}
+			lightboxTitle.textContent = title;
+		}
 
-        lightboxContent(lightbox);
-        return lightbox;
-    }
-    return { getLightboxDOM };
+		lightboxContent(lightbox);
+		return lightbox;
+	}
+	return { getLightboxDOM };
 }

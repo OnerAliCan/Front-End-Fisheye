@@ -1,107 +1,92 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link href="css/style.css" rel="stylesheet" type="text/css" />
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/png" href="assets/favicon.png" />
-        <link
-            href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
-            rel="stylesheet"
-        />
-        <title>Fisheye - photographe</title>
-    </head>
-    <body>
-        <header id="modalHeader">
-            <a href="index.html">
-                <img src="assets/images/logo.png" class="logo" />
-            </a>
-        </header>
-        <main id="main">
-            <div class="photograph-header">
-                <div class="button-container">
-                    <button class="contact-button" id="display-modal" >
-                        Contactez-moi
-                    </button>
-                </div>
-            </div>
-            <div class="media-section"></div>
-        </main>
-        <dialog id="modal">
-            <header id="modalHeader">
-                <div id="contact-name-container">
-                    <h2>Contactez-moi</h2>
-                    <h2 id="contact-me-name"></h2>
-                </div>
-                <div class="close-modal-container">
-                    <img src="assets/icons/close.svg" onclick="closeModal()" />
-                </div>
-            </header>
-            <div class="modal-body">
-                <form
-                    name="reserve"
-                    action="index.html"
-                    onsubmit="return validate();"
-                >
-                    <div class="formData" data-error-visible="false">
-                        <label for="first">Prénom</label>
-                        <input
-                            class="text-control"
-                            type="text"
-                            id="first"
-                            name="first"
-                            minlength="2"
-                        />
-                        </div>
 
-                        <div class="formData">
-                            <label for="last">Nom</label>
-                            <input
-                                class="text-control"
-                                type="text"
-                                id="last"
-                                name="last"
-                            />
-                        </div>
-                        <div class="formData">
-                            <label for="email">E-mail</label>
-                            <input
-                                class="text-control"
-                                type="email"
-                                id="email"
-                                name="email"
-                            />
-                        </div>
-                        <div class="formData">
-                            <label for="message">Votre Message</label>
+<head>
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet" />
+  <title>Fisheye - photographe</title>
+</head>
 
-                            <textarea name="message" id="message"></textarea
-                            >
-                        </div>
-                    </div>
-                    <button class="contact-button" id="send-button">Envoyer</button>
-                </form>
-            </div>
-        </dialog>
-        <dialog id="lightbox">
-            <div class="left-arrow-container">
-                <img src="assets/icons/chevron-left.svg" id="left-arrow-img">
-            </div> 
-            <div id="lightbox-img">
-            </div>
-            <div class="right-container">
-                <div class="close-lightbox-container">
-                    <img src="assets/icons/close-lightbox.svg" onclick="closeModal()">
-                </div>
-                <div class="right-arrow-container">
-                    <img src="assets/icons/chevron-right.svg" id="right-arrow-img">
-                </div>
-            </div>
-        </dialog>
-        <script src="./scripts/pages/photographer.js"></script>
-        <script src="./scripts/components/photographerHeader.js"></script>
-        <script src="./scripts/components/photographerPrice.js"></script>
-        <script src="./scripts/components/photographerMedia.js"></script>
-        <script src="./scripts/utils/contactForm.js"></script>
-        <script src="./scripts/components/lightbox.js"></script>
-    </body>
+<body>
+  <header id="modalHeader">
+    <a href="index.html">
+      <img src="assets/images/logo.png" class="logo" />
+    </a>
+  </header>
+  <main id="main">
+    <div class="photograph-header">
+      <div class="button-container">
+        <button class="contact-button" id="display-modal"> Contactez-moi </button>
+      </div>
+    </div>
+    <div class="media-section"></div>
+    <div id="price-container">
+      <p id="total-likes-container"></p>
+      <p id="daily-price-container"></p>
+    </div>
+  </main>
+  <dialog id="modal">
+    <header id="modalHeader">
+      <div id="contact-name-container">
+        <h2>Contactez-moi</h2>
+        <h2 id="contact-me-name"></h2>
+      </div>
+      <div class="close-modal-container">
+        <img src="assets/icons/close.svg" onclick="closeModal()" />
+      </div>
+    </header>
+    <div class="modal-body">
+      <form name="reserve" action="index.html" onsubmit="return validate();">
+        <div class="formData" data-error-visible="false">
+          <label for="first">Prénom</label>
+          <input class="text-control" type="text" id="first" name="first" minlength="2" />
+        </div>
+        <div class="formData">
+          <label for="last">Nom</label>
+          <input class="text-control" type="text" id="last" name="last" />
+        </div>
+        <div class="formData">
+          <label for="email">E-mail</label>
+          <input class="text-control" type="email" id="email" name="email" />
+        </div>
+        <div class="formData">
+          <label for="message">Votre Message</label>
+          <textarea name="message" id="message"></textarea>
+        </div>
+    </div>
+    <button class="contact-button" id="send-button">Envoyer</button>
+    </form>
+    </div>
+  </dialog>
+  <dialog id="lightbox">
+    <div id="lightbox-container">
+      <div class="left-arrow-container">
+        <img src="assets/icons/chevron-left.svg" id="left-arrow-img">
+      </div>
+      <div id="lightbox-img-title-container">
+        <div id="lightbox-img"></div>
+        <div class="lightbox-title">
+          <p id="lightbox-media-title"></p>
+        </div>
+      </div>
+      <div class="right-container">
+        <div class="close-lightbox-container">
+          <img src="assets/icons/close-lightbox.svg" onclick="closeModal()">
+        </div>
+        <div class="right-arrow-container">
+          <img src="assets/icons/chevron-right.svg" id="right-arrow-img">
+        </div>
+      </div>
+    </div>
+  </dialog>
+  <script src="./scripts/pages/photographer.js"></script>
+  <script src="./scripts/components/photographerHeader.js"></script>
+  <script src="./scripts/components/photographerPrice.js"></script>
+  <script src="./scripts/components/photographerMedia.js"></script>
+  <script src="./scripts/utils/contactForm.js"></script>
+  <script src="./scripts/components/lightbox.js"></script>
+</body>
+
 </html>
