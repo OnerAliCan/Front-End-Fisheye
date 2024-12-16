@@ -3,7 +3,7 @@ function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
 		mediaData;
 
 	let mediaName;
-	let mediaLiked = false; // Pour suivre si ce média est liké ou non
+	let mediaLiked = false;
 
 	if (typeof image !== "undefined") {
 		mediaName = image;
@@ -13,25 +13,20 @@ function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
 	const path = `assets/images/${photographerId}/${mediaName}`;
 	const mediaLikes = document.createElement("p");
 
-	// Initialisation du nombre de likes pour ce média
 	let mediaLikesCount = likes;
 	mediaLikes.textContent = `${mediaLikesCount} likes`;
 
-	// Ajout de l'événement de clic sur le nombre de likes
 	mediaLikes.addEventListener("click", () => {
 		if (mediaLiked) {
-			// Si déjà liké, on décrémente
 			mediaLikesCount--;
 			mediaLiked = false;
-			updateTotalLikes(-1); // Réduire le compteur global des likes
+			updateTotalLikes(-1);
 		} else {
-			// Si pas liké, on incrémente
 			mediaLikesCount++;
 			mediaLiked = true;
-			updateTotalLikes(1); // Augmenter le compteur global des likes
+			updateTotalLikes(1);
 		}
 
-		// Mise à jour du nombre de likes pour ce média
 		mediaLikes.textContent = `${mediaLikesCount} likes`;
 	});
 
@@ -44,7 +39,6 @@ function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
 		mediaTitle.classList.add("media-title");
 		mediaLikes.classList.add("media-likes");
 
-		// Générer l'élément média (image ou vidéo)
 		function generateMedias() {
 			if (typeof image !== "undefined") {
 				const mediaImg = document.createElement("img");
