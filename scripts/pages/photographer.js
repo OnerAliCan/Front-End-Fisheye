@@ -57,6 +57,8 @@ function displayData(photographer, medias) {
 	}
 
 	function generateMedia() {
+		mediaSection.innerHTML = "";
+
 		medias.forEach((mediaData, index) => {
 			const mediaModel = mediaTemplate(
 				mediaData,
@@ -70,6 +72,75 @@ function displayData(photographer, medias) {
 		});
 	}
 
+	document
+		.getElementById("sort-by-items")
+		.addEventListener("change", (event) => {
+			if (event.target.value === "popularity") {
+				console.log("popularity");
+				sortMediabyLikes();
+				generateMedia();
+			} else if (event.target.value === "date") {
+				console.log("date");
+				sortMediabyDate();
+				generateMedia();
+			} else if (event.target.value === "title") {
+				console.log("title");
+				sortMediaByName();
+				generateMedia();
+			}
+		});
+
+	function sortMediaByName() {
+		medias.sort((a, b) => {
+			const nameA = a.title.toUpperCase(); // ignore upper and lowercase
+			const nameB = b.title.toUpperCase(); // ignore upper and lowercase
+			if (nameA < nameB) {
+				return -1;
+			}
+			if (nameA > nameB) {
+				return 1;
+			}
+
+			// names must be equal
+
+			return 0;
+		});
+	}
+
+	function sortMediabyLikes() {
+		medias.sort((a, b) => {
+			const likesA = a.likes;
+			const likesB = b.likes;
+			if (likesA < likesB) {
+				return -1;
+			}
+			if (likesA > likesB) {
+				return 1;
+			}
+
+			// names must be equal
+
+			return 0;
+		});
+	}
+
+	function sortMediabyDate() {
+		medias.sort((a, b) => {
+			const dateA = a.date;
+			const dateB = b.date;
+			if (dateA < dateB) {
+				return -1;
+			}
+			if (dateA > dateB) {
+				return 1;
+			}
+			// generateMedia();
+			// names must be equal
+
+			return 0;
+		});
+	}
+	sortMediabyDate();
 	generateHeader();
 	generatePrice();
 	generateMedia();

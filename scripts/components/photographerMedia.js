@@ -26,7 +26,6 @@ function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
 			mediaLiked = true;
 			updateTotalLikes(1);
 		}
-
 		mediaLikes.textContent = `${mediaLikesCount} likes`;
 	});
 
@@ -44,6 +43,7 @@ function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
 				const mediaImg = document.createElement("img");
 				mediaContainer.classList.add("media-container");
 				mediaImg.setAttribute("src", path);
+				mediaImg.setAttribute("alt", title);
 				mediaContainer.appendChild(mediaImg);
 			} else {
 				const mediaVideo = document.createElement("video");

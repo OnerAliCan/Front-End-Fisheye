@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<head>
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
-  <meta charset="utf-8" />
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet" />
-  <title>Fisheye - photographe</title>
+<meta charset="utf-8" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet" />
+<title>Fisheye - photographe</title>
 </head>
 
 <body>
-  <header id="modalHeader">
+  <header id="photographer-header">
     <a href="index.html">
-      <img src="assets/images/logo.png" class="logo" />
+      <img src="assets/images/logo.png" class="logo" alt="fisheye logo" />
     </a>
   </header>
   <main id="main">
@@ -21,6 +21,15 @@
         <button class="contact-button" id="display-modal"> Contactez-moi </button>
       </div>
     </div>
+    <div id="sort-selector-container">
+      <label for="sort-by-items" id="sort-by-text">Trier par:</label>
+      <select name="sort-by-items" id="sort-by-items">
+        <option value="date" id="date-item">Date</option>
+        <option value="popularity" id="popularity-item">Popularité</option>
+        <option value="title" id="title-item">Titre</option>
+      </select>
+
+    </div>
     <div class="media-section"></div>
     <div id="price-container">
       <p id="total-likes-container"></p>
@@ -28,13 +37,13 @@
     </div>
   </main>
   <dialog id="modal">
-    <header id="modalHeader">
+    <header id="modal-header">
       <div id="contact-name-container">
         <h2>Contactez-moi</h2>
         <h2 id="contact-me-name"></h2>
       </div>
       <div class="close-modal-container">
-        <img src="assets/icons/close.svg" onclick="closeModal()" />
+        <img src="assets/icons/close.svg" onclick="closeModal()" alt="Bouton fermer" />
       </div>
     </header>
     <div class="modal-body">
@@ -63,7 +72,7 @@
   <dialog id="lightbox">
     <div id="lightbox-container">
       <div class="left-arrow-container">
-        <img src="assets/icons/chevron-left.svg" id="left-arrow-img">
+        <img src="assets/icons/chevron-left.svg" id="left-arrow-img" alt="Aller à l'image précédente">
       </div>
       <div id="lightbox-img-title-container">
         <div id="lightbox-img"></div>
@@ -73,10 +82,10 @@
       </div>
       <div class="right-container">
         <div class="close-lightbox-container">
-          <img src="assets/icons/close-lightbox.svg" onclick="closeModal()">
+          <img src="assets/icons/close-lightbox.svg" onclick="closeModal()" alt="Bouton fermer">
         </div>
         <div class="right-arrow-container">
-          <img src="assets/icons/chevron-right.svg" id="right-arrow-img">
+          <img src="assets/icons/chevron-right.svg" id="right-arrow-img" alt="Aller à l'image suivante">
         </div>
       </div>
     </div>
