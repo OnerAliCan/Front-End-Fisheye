@@ -28,7 +28,7 @@ function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
 		}
 		mediaLikes.textContent = `${mediaLikesCount} likes`;
 	});
-
+	console.log(index);
 	function getMediaDOM() {
 		const mediaArticle = document.createElement("article");
 		const mediaContainer = document.createElement("div");
@@ -37,6 +37,7 @@ function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
 		mediaTitleContainer.classList.add("media-title-container");
 		mediaTitle.classList.add("media-title");
 		mediaLikes.classList.add("media-likes");
+		mediaLikes.setAttribute("tabindex", 0);
 
 		function generateMedias() {
 			if (typeof image !== "undefined") {
@@ -54,7 +55,7 @@ function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
 				mediaVideo.appendChild(mediaVideoSource);
 				mediaContainer.appendChild(mediaVideo);
 			}
-
+			mediaContainer.setAttribute("tabindex", 0);
 			mediaArticle.appendChild(mediaContainer);
 			mediaTitle.textContent = title;
 			mediaTitleContainer.appendChild(mediaTitle);

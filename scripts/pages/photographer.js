@@ -66,8 +66,10 @@ function displayData(photographer, medias) {
 				medias.length,
 				updateTotalLikes
 			);
+			// console.log(index);
 
 			const mediaDOM = mediaModel.getMediaDOM();
+			// console.log(mediaDOM);
 			mediaSection.appendChild(mediaDOM);
 		});
 	}

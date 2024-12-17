@@ -54,9 +54,9 @@ dialog {
 	border: none;
 }
 
-:focus-visible {
+/* :focus-visible {
 	outline: none;
-}
+} */
 
 dialog::backdrop {
 	background-color: white;

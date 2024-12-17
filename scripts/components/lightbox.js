@@ -25,6 +25,7 @@ function generateLightbox(mediaData) {
 			if (typeof image !== "undefined") {
 				const lightboxImg = document.createElement("img");
 				lightboxImg.setAttribute("src", path);
+				lightboxImg.setAttribute("alt", title);
 				lightboxMediaContainer.appendChild(lightboxImg);
 			} else {
 				const lightboxVideo = document.createElement("video");
