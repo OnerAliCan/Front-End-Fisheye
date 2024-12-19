@@ -43,12 +43,12 @@
         <h2 id="contact-me-name"></h2>
       </div>
       <div class="close-modal-container">
-        <img src="assets/icons/close.svg" onclick="closeModal()" alt="Bouton fermer" />
+        <img src="assets/icons/close.svg" onclick="closeModal()" alt="Bouton fermer" tabindex="0" />
       </div>
     </header>
     <div class="modal-body">
-      <form name="reserve" action="index.html" onsubmit="return validate();">
-        <div class="formData" data-error-visible="false">
+      <form name="reserve" action="index.html" onsubmit="return validate();" novalidate>
+        <div class="formData">
           <label for="first">Prénom</label>
           <input class="text-control" type="text" id="first" name="first" minlength="2" />
         </div>
@@ -72,7 +72,7 @@
   <dialog id="lightbox">
     <div id="lightbox-container">
       <div class="left-arrow-container">
-        <img src="assets/icons/chevron-left.svg" id="left-arrow-img" alt="Aller à l'image précédente">
+        <img src="assets/icons/chevron-left.svg" id="left-arrow-img" alt="Aller à l'image précédente" tabindex="0">
       </div>
       <div id="lightbox-img-title-container">
         <div id="lightbox-img"></div>
@@ -82,10 +82,10 @@
       </div>
       <div class="right-container">
         <div class="close-lightbox-container">
-          <img src="assets/icons/close-lightbox.svg" onclick="closeModal()" alt="Bouton fermer">
+          <img src="assets/icons/close-lightbox.svg" onclick="closeModal()" alt="Bouton fermer" tabindex="0">
         </div>
         <div class="right-arrow-container">
-          <img src="assets/icons/chevron-right.svg" id="right-arrow-img" alt="Aller à l'image suivante">
+          <img src="assets/icons/chevron-right.svg" id="right-arrow-img" alt="Aller à l'image suivante" tabindex="0">
         </div>
       </div>
     </div>

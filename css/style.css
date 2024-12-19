@@ -1,115 +1,119 @@
 @import url("photographer.css");
 
 body {
-    font-family: "DM Sans", sans-serif;
-    margin: 0;
-    height: 1024px;
+	font-family: "DM Sans", sans-serif;
+	margin: 0;
+	height: 1024px;
 }
 
 header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 90px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: 90px;
 }
 
 h1 {
-    color: #901c1c;
-    margin-right: 100px;
+	color: #901c1c;
+	margin-right: 100px;
 }
 
 .logo {
-    height: 50px;
-    margin-left: 100px;
+	height: 50px;
+	margin-left: 100px;
 }
 
-.photographer_section,
-.media-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
-    margin-top: 100px;
+.photographer_section {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 70px;
+	margin-top: 100px;
 }
 
 .photographer_section article {
-    justify-self: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    max-width: 100%;
+	justify-self: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	max-width: 100%;
 }
 
 .photographer_section article h2 {
-    color: #d3573c;
-    font-size: 36px;
-    font-family: DM Sans;
-    font-size: 36px;
-    font-weight: 400;
-    line-height: 46.87px;
-    text-align: center;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-    margin: 0;
+	color: #d3573c;
+	font-size: 36px;
+	font-family: DM Sans;
+	font-size: 36px;
+	font-weight: 400;
+	line-height: 46.87px;
+	text-align: center;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+	margin: 0;
 }
 
 .photographer_section article h3 {
-    color: #901c1c;
+	color: #901c1c;
 
-    font-family: DM Sans;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 16.93px;
-    text-align: center;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-    margin: 0;
+	font-family: DM Sans;
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 16.93px;
+	text-align: center;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+	margin: 0;
 }
 
 .p-tagline {
-    color: #000000;
-    font-family: DM Sans;
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 13.02px;
-    text-align: center;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-    margin: 0;
+	color: #000000;
+	font-family: DM Sans;
+	font-size: 10px;
+	font-weight: 400;
+	line-height: 13.02px;
+	text-align: center;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+	margin: 0;
 }
 
 .p-price {
-    color: #757575;
-    font-family: DM Sans;
-    font-size: 9px;
-    font-weight: 400;
-    line-height: 11.72px;
-    text-align: center;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
+	color: #757575;
+	font-family: DM Sans;
+	font-size: 9px;
+	font-weight: 400;
+	line-height: 11.72px;
+	text-align: center;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
 }
 .img-container {
-    height: 200px;
-    width: 200px;
-    overflow: hidden;
-    border-radius: 50%;
-    margin-bottom: 20px;
+	height: 200px;
+	width: 200px;
+	overflow: hidden;
+	border-radius: 50%;
+	margin-bottom: 20px;
 }
 
 .photographer_section article img {
-    display: block;
-    height: 200px;
-    width: 200px;
-    object-fit: cover;
-    /* overflow: hidden; */
-    transform: scale(1.2); /* Zoom léger à 120% */
-    transform-origin: center;
+	display: block;
+	height: 200px;
+	width: 200px;
+	object-fit: cover;
+	/* overflow: hidden; */
+	transform: scale(1.2); /* Zoom léger à 120% */
+	transform-origin: center;
 }
 
 article a {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
 }

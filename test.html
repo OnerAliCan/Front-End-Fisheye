@@ -1,0 +1,123 @@
+<div class="custom-dropdown">
+    <div class="dropdown-selected">Select an option</div>
+    <ul class="dropdown-options">
+        <li class="dropdown-item" data-value="1">Option 1</li>
+        <li class="dropdown-item" data-value="2">Option 2</li>
+        <li class="dropdown-item" data-value="3">Option 3</li>
+    </ul>
+</div>
+
+<div id="sort-selector-container">
+    <div id="sort-by-text">Trier par:</div>
+    <ul id="sort-by-items">
+        <li value="date" id="date-item">Date</option>
+        <li value="popularity" id="popularity-item">Popularité</option>
+        <li value="title" id="title-item">Titre</option>
+    </ul>
+</div>
+
+<div id="sort-selector-container">
+    <div id="sort-by-text">Trier par:</div>
+    <ul id="sort-by-items">
+        <li data-value="date" id="date-item">Date</li>
+        <li data-value="popularity" id="popularity-item">Popularité</li>
+        <li data-value="title" id="title-item">Titre</li>
+    </ul>
+</div>
+
+
+<div id="sort-selector-container">
+    <label for="sort-by-items" id="sort-by-text">Trier par:</label>
+    <select name="sort-by-items" id="sort-by-items">
+        <option value="date" id="date-item">Date</option>
+        <option value="popularity" id="popularity-item">Popularité</option>
+        <option value="title" id="title-item">Titre</option>
+    </select>
+</div>
+
+<script>
+
+
+
+    const dropdown = document.querySelector('.custom-dropdown');
+    const selected = dropdown.querySelector('.dropdown-selected');
+    const options = dropdown.querySelector('.dropdown-options');
+
+    // Toggle visibility of the dropdown
+    selected.addEventListener('click', () => {
+        options.classList.toggle('show');
+    });
+
+    // Handle option selection
+    options.addEventListener('click', (e) => {
+        if (e.target.tagName === 'LI') {
+            selected.textContent = e.target.textContent; // Set selected text
+            selected.setAttribute('data-value', e.target.getAttribute('data-value')); // Update value
+            options.classList.remove('show'); // Close dropdown
+        }
+    });
+
+    // Close dropdown if clicked outside
+    document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target)) {
+            options.classList.remove('show');
+        }
+    });
+</script>
+
+<style>
+    /* Dropdown container */
+    .custom-dropdown {
+        position: relative;
+        width: 200px;
+        font-size: 16px;
+    }
+
+    /* Selected item */
+    .dropdown-selected {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    /* Options container */
+    .dropdown-options {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: none;
+        /* Hidden by default */
+        z-index: 1000;
+    }
+
+    /* Show options */
+    .dropdown-options.show {
+        display: block;
+    }
+
+    /* Dropdown items */
+    .dropdown-item {
+        padding: 10px;
+        cursor: pointer;
+        border-bottom: 1px solid #eee;
+    }
+
+    .dropdown-item:last-child {
+        border-bottom: none;
+    }
+
+    /* Hover effect */
+    .dropdown-item:hover {
+        background-color: #007BFF;
+        color: white;
+    }
+</style>

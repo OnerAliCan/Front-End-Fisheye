@@ -66,10 +66,8 @@ function displayData(photographer, medias) {
 				medias.length,
 				updateTotalLikes
 			);
-			// console.log(index);
 
 			const mediaDOM = mediaModel.getMediaDOM();
-			// console.log(mediaDOM);
 			mediaSection.appendChild(mediaDOM);
 		});
 	}
@@ -78,15 +76,12 @@ function displayData(photographer, medias) {
 		.getElementById("sort-by-items")
 		.addEventListener("change", (event) => {
 			if (event.target.value === "popularity") {
-				console.log("popularity");
 				sortMediabyLikes();
 				generateMedia();
 			} else if (event.target.value === "date") {
-				console.log("date");
 				sortMediabyDate();
 				generateMedia();
 			} else if (event.target.value === "title") {
-				console.log("title");
 				sortMediaByName();
 				generateMedia();
 			}
@@ -164,109 +159,114 @@ function initMedias(medias) {
 	const mediaContainerArrayLength = mediaContainerArray.length;
 
 	for (let i = 0; i < mediaContainerArrayLength; i++) {
-		mediaContainerArray[i].addEventListener("click", () => {
-			const lightboxMediaContainer =
-				document.getElementById("lightbox-img");
+		mediaContainerArray[i].addEventListener("click", handleLightbox);
+		mediaContainerArray[i].addEventListener("keydown", handleLightbox);
 
-			lightboxMediaContainer.innerHTML = "";
+		function handleLightbox(event) {
+			if (event.type === "click" || event.key === "Enter") {
+				const lightboxMediaContainer =
+					document.getElementById("lightbox-img");
 
-			let currentIndex = i;
-			const lightbox = document.getElementById("lightbox");
-			const lightboxResult = generateLightbox(medias[i]);
-
-			lightboxResult.getLightboxDOM(
-				lightbox,
-				medias,
-				medias[currentIndex],
-				currentIndex,
-				lightboxMediaContainer
-			);
-			lightbox.showModal();
-
-			document
-				.getElementById("left-arrow-img")
-				.addEventListener("click", () => {
-					swipeLeft();
-				});
-
-			document.addEventListener("keydown", (event) => {
-				if (event.key === "ArrowLeft") {
-					swipeLeft();
-				}
-			});
-
-			function swipeLeft() {
 				lightboxMediaContainer.innerHTML = "";
 
-				currentIndex = getPreviousImg(
-					currentIndex,
-					mediaContainerArrayLength
-				);
+				let currentIndex = i;
+				const lightbox = document.getElementById("lightbox");
+				const lightboxResult = generateLightbox(medias[i]);
 
-				const updatedLightboxResult = generateLightbox(
-					medias[currentIndex]
-				);
-				updatedLightboxResult.getLightboxDOM(
+				lightboxResult.getLightboxDOM(
 					lightbox,
 					medias,
 					medias[currentIndex],
 					currentIndex,
 					lightboxMediaContainer
 				);
-			}
+				lightbox.showModal();
 
-			function getPreviousImg(value, mediaContainerArrayLength) {
-				value--;
+				document
+					.getElementById("left-arrow-img")
+					.addEventListener("click", () => {
+						swipeLeft();
+					});
 
-				if (value < 0) {
-					value = mediaContainerArrayLength - 1;
-				}
-
-				return value;
-			}
-
-			document
-				.getElementById("right-arrow-img")
-				.addEventListener("click", () => {
-					swipeRight();
+				document.addEventListener("keydown", (event) => {
+					if (event.key === "ArrowLeft") {
+						swipeLeft();
+					}
 				});
 
-			document.addEventListener("keydown", (event) => {
-				if (event.key === "ArrowRight") {
-					swipeRight();
-				}
-			});
+				function swipeLeft() {
+					lightboxMediaContainer.innerHTML = "";
 
-			function swipeRight() {
-				lightboxMediaContainer.innerHTML = "";
+					currentIndex = getPreviousImg(
+						currentIndex,
+						mediaContainerArrayLength
+					);
 
-				currentIndex = getNextImg(
-					currentIndex,
-					mediaContainerArrayLength
-				);
-
-				const updatedLightboxResult = generateLightbox(
-					medias[currentIndex]
-				);
-				updatedLightboxResult.getLightboxDOM(
-					lightbox,
-					medias,
-					medias[currentIndex],
-					currentIndex,
-					lightboxMediaContainer
-				);
-			}
-
-			function getNextImg(value, mediaContainerArrayLength) {
-				value++;
-
-				if (value > mediaContainerArrayLength - 1) {
-					value = 0;
+					const updatedLightboxResult = generateLightbox(
+						medias[currentIndex]
+					);
+					updatedLightboxResult.getLightboxDOM(
+						lightbox,
+						medias,
+						medias[currentIndex],
+						currentIndex,
+						lightboxMediaContainer
+					);
 				}
 
-				return value;
+				function getPreviousImg(value, mediaContainerArrayLength) {
+					value--;
+
+					if (value < 0) {
+						value = mediaContainerArrayLength - 1;
+					}
+
+					return value;
+				}
+
+				document
+					.getElementById("right-arrow-img")
+					.addEventListener("click", () => {
+						swipeRight();
+					});
+
+				document.addEventListener("keydown", (event) => {
+					if (event.key === "ArrowRight") {
+						swipeRight();
+					}
+				});
+
+				function swipeRight() {
+					lightboxMediaContainer.innerHTML = "";
+
+					currentIndex = getNextImg(
+						currentIndex,
+						mediaContainerArrayLength
+					);
+
+					const updatedLightboxResult = generateLightbox(
+						medias[currentIndex]
+					);
+					updatedLightboxResult.getLightboxDOM(
+						lightbox,
+						medias,
+						medias[currentIndex],
+						currentIndex,
+						lightboxMediaContainer
+					);
+				}
+
+				function getNextImg(value, mediaContainerArrayLength) {
+					value++;
+
+					if (value > mediaContainerArrayLength - 1) {
+						value = 0;
+					}
+
+					return value;
+				}
 			}
-		});
+		}
 	}
 }
 

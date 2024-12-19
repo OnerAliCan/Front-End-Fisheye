@@ -11,24 +11,46 @@ function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
 		mediaName = video;
 	}
 	const path = `assets/images/${photographerId}/${mediaName}`;
+	const mediaLikesContainer = document.createElement("div");
+	mediaLikesContainer.id = "media-likes-container";
+	mediaLikesContainer.setAttribute("tabindex", "0");
+
 	const mediaLikes = document.createElement("p");
 
-	let mediaLikesCount = likes;
-	mediaLikes.textContent = `${mediaLikesCount} likes`;
+	const regularHeart = document.createElement("img");
+	regularHeart.setAttribute("src", "assets/icons/heart-regular.svg");
+	const solidHeart = document.createElement("img");
+	solidHeart.setAttribute("src", "../../assets/icons/heart-solid.svg");
+	regularHeart.id = "heart-svg";
+	solidHeart.id = "heart-svg";
 
-	mediaLikes.addEventListener("click", () => {
-		if (mediaLiked) {
-			mediaLikesCount--;
-			mediaLiked = false;
-			updateTotalLikes(-1);
-		} else {
-			mediaLikesCount++;
-			mediaLiked = true;
-			updateTotalLikes(1);
+	let mediaLikesCount = likes;
+	mediaLikes.textContent = `${mediaLikesCount}`;
+	mediaLikesContainer.appendChild(mediaLikes);
+	mediaLikesContainer.appendChild(regularHeart);
+
+	mediaLikesContainer.addEventListener("click", handleTotalLikes);
+	mediaLikesContainer.addEventListener("keydown", handleTotalLikes);
+
+	function handleTotalLikes(event) {
+		if (event.type === "click" || event.key === "Enter") {
+			if (mediaLiked) {
+				mediaLikesCount--;
+				mediaLiked = false;
+				updateTotalLikes(-1);
+				mediaLikesContainer.removeChild(solidHeart);
+				mediaLikesContainer.appendChild(regularHeart);
+			} else {
+				mediaLikesCount++;
+				mediaLiked = true;
+				updateTotalLikes(1);
+				mediaLikesContainer.removeChild(regularHeart);
+				mediaLikesContainer.appendChild(solidHeart);
+			}
+			mediaLikes.textContent = `${mediaLikesCount}`;
 		}
-		mediaLikes.textContent = `${mediaLikesCount} likes`;
-	});
-	console.log(index);
+	}
+
 	function getMediaDOM() {
 		const mediaArticle = document.createElement("article");
 		const mediaContainer = document.createElement("div");
@@ -37,7 +59,6 @@ function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
 		mediaTitleContainer.classList.add("media-title-container");
 		mediaTitle.classList.add("media-title");
 		mediaLikes.classList.add("media-likes");
-		mediaLikes.setAttribute("tabindex", 0);
 
 		function generateMedias() {
 			if (typeof image !== "undefined") {
@@ -59,7 +80,7 @@ function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
 			mediaArticle.appendChild(mediaContainer);
 			mediaTitle.textContent = title;
 			mediaTitleContainer.appendChild(mediaTitle);
-			mediaTitleContainer.appendChild(mediaLikes);
+			mediaTitleContainer.appendChild(mediaLikesContainer);
 			mediaArticle.appendChild(mediaTitleContainer);
 		}
 
