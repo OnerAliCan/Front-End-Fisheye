@@ -1,0 +1,128 @@
+/* Dropdown container */
+#sort-selector-container {
+	position: relative;
+	width: 200px;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+/* Selected item */
+
+#sort-by-text {
+	box-sizing: border-box;
+	background-color: #901c1c;
+	border-radius: 5px;
+	padding-left: 20px;
+	padding-right: 18px;
+	cursor: pointer;
+	display: none;
+	justify-content: space-between;
+	align-items: center;
+
+	width: 170px;
+	height: 60px;
+
+	color: #ffffff;
+}
+
+/* Options container */
+#sort-by-items {
+	/* box-sizing: border-box; */
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	width: 100%;
+	background-color: #901c1c;
+	color: #ffffff;
+	border-radius: 5px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: none;
+	z-index: 1000;
+
+	width: 170px;
+	height: 170px;
+	border-radius: 5px;
+}
+
+/* Show options */
+#sort-by-items.show {
+	display: block;
+}
+
+#sort-by-text.show {
+	display: flex;
+}
+
+/* Dropdown items */
+#sort-by-items .list-item {
+	display: flex;
+	align-items: center;
+	/* padding: 10px; */
+	cursor: pointer;
+	/* border-bottom: 1px solid #eee; */
+	/* box-sizing: border-box; */
+	padding-left: 20px;
+}
+#popularity-item {
+	height: 60px;
+	display: flex;
+	/* flex-direction: row; */
+	/* justify-content: space-between; */
+	align-items: center;
+	/* justify-content: center; */
+	padding-right: 18px;
+}
+
+#popularity-container {
+	display: flex;
+	flex-direction: row;
+	/* justify-content: center; */
+	/* align-items: center; */
+}
+
+#date-item {
+	height: 53px;
+
+	position: relative;
+}
+
+#date-item::before,
+#date-item::after {
+	content: "";
+	position: absolute;
+	left: 10px; /* Distance depuis le bord gauche */
+	right: 10px; /* Distance depuis le bord droit */
+	height: 1px; /* Épaisseur de la ligne */
+	background-color: #ffffff; /* Couleur de la ligne */
+}
+
+#date-item::before {
+	top: 0; /* Ligne en haut */
+}
+
+#date-item::after {
+	bottom: 0; /* Ligne en bas */
+}
+
+#title-item {
+	height: 57px;
+}
+
+#sort-by-items .list-item:last-child {
+	border-bottom: none;
+}
+
+/* Hover effect */
+#sort-by-items .list-item:hover {
+	background-color: #007bff;
+	color: white;
+}
+
+/* Icon Styling */
+#chevron-icon {
+	width: 32px;
+	height: 20px;
+}
