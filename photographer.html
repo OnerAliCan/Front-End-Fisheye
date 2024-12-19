@@ -22,11 +22,20 @@
       </div>
     </div>
     <div id="sort-selector-container">
-      <div id="sort-by-text">Trier par:</div>
+      <p>Trier par </p>
+      <div id="sort-by-text" data-value="popularity" tabindex="0">
+        Popularité
+        <img id="chevron-icon-down" src="assets/icons/chevron-down.svg" alt="chevron icon down">
+      </div>
       <ul id="sort-by-items">
-        <li data-value="date" id="date-item">Date</li>
-        <li data-value="popularity" id="popularity-item">Popularité</li>
-        <li data-value="title" id="title-item">Titre</li>
+        <li data-value="popularity" id="popularity-item" class="list-item" tabindex="0">
+          <div id="popularity-container">
+            Popularité
+            <img id="chevron-icon-up" src="assets/icons/chevron-up.svg" alt="chevron icon up">
+          </div>
+        </li>
+        <li data-value="date" id="date-item" class="list-item" tabindex="0">Date</li>
+        <li data-value="title" id="title-item" class="list-item" tabindex="0">Titre</li>
       </ul>
     </div>
 

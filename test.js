@@ -14,17 +14,19 @@ selected.addEventListener("click", () => {
 	options.classList.toggle("show");
 });
 
-// Handle option selection
 options.addEventListener("click", (e) => {
-	if (e.target.tagName === "LI" || e.target.tagName === "li") {
-		console.log(e.target.dataset.value);
-		const newValue = e.target.dataset.value; // Nouveau texte
-		selected.childNodes[0].nodeValue = newValue + " "; // Mettre à jour uniquement le texte
-		selected.setAttribute(
-			"data-value",
-			e.target.getAttribute("data-value")
-		);
+	// Remonte dans la hiérarchie DOM pour trouver le parent <li>
+	let targetLi = e.target.closest("li");
 
+	if (targetLi) {
+		console.log(targetLi.dataset.value); // Valeur de l'attribut `data-value`
+		const newValue = targetLi.dataset.value; // Nouveau texte
+
+		// Mettre à jour le texte affiché
+		selected.childNodes[0].nodeValue = newValue + " "; // Mettre à jour uniquement le texte
+		selected.setAttribute("data-value", newValue);
+
+		// Fermer la liste déroulante
 		options.classList.remove("show");
 		selected.classList.toggle("show");
 	}
@@ -35,7 +37,31 @@ document.addEventListener("click", (e) => {
 	if (!dropdown.contains(e.target)) {
 		options.classList.remove("show");
 		selected.classList.add("show");
-		console.log(selected);
-		// chevronIcon.src = "assets/icons/chevron-down.svg";
+		// console.log(selected);
 	}
+});
+
+{
+	/* <img id="chevron-icon-down" src="icon1.svg" alt="Icon" />; */
+}
+
+const iconDown = document.getElementById("chevron-icon-down");
+const iconUp = document.getElementById("chevron-icon-up");
+const textSortBy = document.getElementById("sort-by-text");
+const popularityItem = document.getElementById("popularity-item");
+
+textSortBy.addEventListener("mouseenter", () => {
+	iconDown.src = "assets/icons/chevron-down-black.svg";
+});
+
+textSortBy.addEventListener("mouseleave", () => {
+	iconDown.src = "assets/icons/chevron-down.svg";
+});
+
+popularityItem.addEventListener("mouseenter", () => {
+	iconUp.src = "assets/icons/chevron-up-black.svg";
+});
+
+popularityItem.addEventListener("mouseleave", () => {
+	iconUp.src = "assets/icons/chevron-up.svg";
 });

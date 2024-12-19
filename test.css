@@ -25,6 +25,10 @@
 	color: #ffffff;
 }
 
+#sort-by-text:hover {
+	background-color: #db8876;
+	color: #000000;
+}
 /* Options container */
 #sort-by-items {
 	/* box-sizing: border-box; */
@@ -79,6 +83,8 @@
 #popularity-container {
 	display: flex;
 	flex-direction: row;
+	width: 100%;
+	justify-content: space-between;
 	/* justify-content: center; */
 	/* align-items: center; */
 }
@@ -117,12 +123,25 @@
 
 /* Hover effect */
 #sort-by-items .list-item:hover {
-	background-color: #007bff;
-	color: white;
+	background-color: #db8876;
+	color: #000000;
+}
+
+#popularity-item:hover {
+	border-radius: 5% 5% 0 0;
+}
+
+#title-item:hover {
+	border-radius: 0 0 5% 5%;
 }
 
 /* Icon Styling */
-#chevron-icon {
+#chevron-icon-up {
+	width: 32px;
+	height: 20px;
+}
+/* Icon Styling */
+#chevron-icon-down {
 	width: 32px;
 	height: 20px;
 }
