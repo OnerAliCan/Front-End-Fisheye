@@ -274,6 +274,7 @@ article {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	cursor: pointer;
 }
 
 .media-title-container .media-title,
