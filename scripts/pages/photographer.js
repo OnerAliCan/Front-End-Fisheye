@@ -39,6 +39,7 @@ function displayData(photographer, medias) {
 		(total, media) => total + media.likes,
 		0
 	);
+
 	function updateTotalLikes(change) {
 		likesTotalNumber += change;
 		document.getElementById(
