@@ -1,9 +1,18 @@
 function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
-	const { id, photographerId, title, image, likes, date, price, video } =
-		mediaData;
+	const {
+		id,
+		photographerId,
+		title,
+		image,
+		likes,
+		date,
+		price,
+		video,
+		liked,
+	} = mediaData;
 
 	let mediaName;
-	let mediaLiked = false;
+	let mediaLiked = liked;
 
 	if (typeof image !== "undefined") {
 		mediaName = image;
@@ -12,9 +21,8 @@ function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
 	}
 	const path = `assets/images/${photographerId}/${mediaName}`;
 	const mediaLikesContainer = document.createElement("div");
-	mediaLikesContainer.id = "media-likes-container";
+	mediaLikesContainer.classList.add("media-likes-container");
 	mediaLikesContainer.setAttribute("tabindex", "0");
-
 	const mediaLikes = document.createElement("p");
 
 	const regularHeart = document.createElement("img");
@@ -36,19 +44,33 @@ function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
 		if (event.type === "click" || event.key === "Enter") {
 			if (mediaLiked) {
 				mediaLikesCount--;
-				mediaLiked = false;
+				mediaData.liked = false;
+				mediaLiked = mediaData.liked;
 				updateTotalLikes(-1);
 				mediaLikesContainer.removeChild(solidHeart);
 				mediaLikesContainer.appendChild(regularHeart);
 			} else {
 				mediaLikesCount++;
-				mediaLiked = true;
+				mediaData.liked = true;
+				mediaLiked = mediaData.liked;
+
 				updateTotalLikes(1);
 				mediaLikesContainer.removeChild(regularHeart);
 				mediaLikesContainer.appendChild(solidHeart);
 			}
 			mediaLikes.textContent = `${mediaLikesCount}`;
+			handleMediaDataLiked(mediaLiked);
+
+			// console.log(mediaLiked);
+			return mediaLiked;
 		}
+		return mediaLiked;
+	}
+	// mediaLikesContainer.addEventListener("click", () => console.log(mediaData));
+	function handleMediaDataLiked(mediaLiked) {
+		// console.log(mediaLiked);
+
+		return mediaLiked;
 	}
 
 	function getMediaDOM() {

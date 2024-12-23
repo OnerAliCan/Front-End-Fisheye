@@ -19,7 +19,7 @@ options.addEventListener("click", (e) => {
 	let targetLi = e.target.closest("li");
 
 	if (targetLi) {
-		console.log(targetLi.dataset.value); // Valeur de l'attribut `data-value`
+		// console.log(targetLi.dataset.value);
 		const newValue = targetLi.dataset.value; // Nouveau texte
 
 		// Mettre à jour le texte affiché

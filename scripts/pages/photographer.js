@@ -20,7 +20,7 @@ async function getPhotographer(urlIdNumber) {
 		medias,
 	};
 }
-
+const mediaLikesContainerDiv = document.querySelector("media-likes-container");
 function getParams() {
 	const params = new URL(document.location).searchParams;
 	const urlId = params.get("id");
@@ -58,21 +58,43 @@ function displayData(photographer, medias) {
 	}
 
 	function generateMedia() {
+		// console.log(mediaSection);
+
 		mediaSection.innerHTML = "";
 
 		medias.forEach((mediaData, index) => {
+			console.log(mediaData.liked);
+
+			// mediaData.liked = false;
+			// console.log(JSON.stringify(medias, null, 2));
+
 			const mediaModel = mediaTemplate(
 				mediaData,
 				index,
 				medias.length,
 				updateTotalLikes
 			);
-
+			// console.log(JSON.stringify(medias, null, 2));
+			// console.log(mediaData.liked);
+			// console.log(liked);
+			// console.log(mediaData);
 			const mediaDOM = mediaModel.getMediaDOM();
-			mediaSection.appendChild(mediaDOM);
-		});
-	}
 
+			mediaSection.appendChild(mediaDOM);
+
+			mediaDOM
+				.querySelector(".media-likes-container")
+				.addEventListener("click", () => {
+					release(mediaData);
+				});
+		});
+
+		// return mediaData;
+	}
+	function release(mediaData) {
+		console.log(mediaData.liked);
+		return mediaData;
+	}
 	const dropdown = document.querySelector("#sort-selector-container");
 	const selected = dropdown.querySelector("#sort-by-text");
 	const options = dropdown.querySelector("#sort-by-items");
@@ -83,6 +105,7 @@ function displayData(photographer, medias) {
 	selected.setAttribute("data-value", "popularity"); // Valeur par défaut
 	sortMediabyLikes();
 	generateMedia();
+	// console.log(mediaData.liked);
 
 	// Toggle visibility of the dropdown
 	selected.addEventListener("click", () => {
@@ -90,21 +113,23 @@ function displayData(photographer, medias) {
 
 		options.classList.toggle("show");
 	});
-
+	// console.log(medias.liked);
 	options.addEventListener("click", (e) => {
 		// Remonte dans la hiérarchie DOM pour trouver le parent <li>
 		let targetLi = e.target.closest("li");
-
 		if (targetLi) {
 			const newValue = targetLi.innerText; // Nouveau texte
-			console.log(targetLi.dataset.value);
+			// console.log(targetLi.dataset.value);
 			if (targetLi.dataset.value === "popularity") {
+				initMedias(medias);
 				sortMediabyLikes();
 				generateMedia();
 			} else if (targetLi.dataset.value === "date") {
+				initMedias(medias);
 				sortMediabyDate();
 				generateMedia();
 			} else if (targetLi.dataset.value === "title") {
+				initMedias(medias);
 				sortMediaByName();
 				generateMedia();
 			}
@@ -148,23 +173,9 @@ function displayData(photographer, medias) {
 		iconUp.src = "assets/icons/chevron-up.svg";
 	});
 
-	// document
-	// 	.getElementById("sort-by-items")
-	// 	.addEventListener("change", (event) => {
-	// 		if (event.target.dataset.value === "popularity") {
-	// 			sortMediabyLikes();
-	// 			generateMedia();
-	// 		} else if (event.target.dataset.value === "date") {
-	// 			sortMediabyDate();
-	// 			generateMedia();
-	// 		} else if (event.target.dataset.value === "title") {
-	// 			sortMediaByName();
-	// 			generateMedia();
-	// 		}
-	// 	});
-
 	function sortMediaByName() {
 		medias.sort((a, b) => {
+			// console.log(medias.likes);
 			const nameA = a.title.toUpperCase(); // ignore upper and lowercase
 			const nameB = b.title.toUpperCase(); // ignore upper and lowercase
 			if (nameA < nameB) {
@@ -173,17 +184,17 @@ function displayData(photographer, medias) {
 			if (nameA > nameB) {
 				return 1;
 			}
-
-			// names must be equal
-
 			return 0;
 		});
 	}
 
 	function sortMediabyLikes() {
 		medias.sort((a, b) => {
+			// console.log(medias);
+
 			const likesA = a.likes;
 			const likesB = b.likes;
+
 			if (likesA < likesB) {
 				return -1;
 			}
@@ -191,14 +202,14 @@ function displayData(photographer, medias) {
 				return 1;
 			}
 
-			// names must be equal
-
 			return 0;
 		});
 	}
 
 	function sortMediabyDate() {
 		medias.sort((a, b) => {
+			// console.log(medias(likes));
+
 			const dateA = a.date;
 			const dateB = b.date;
 			if (dateA < dateB) {
@@ -207,16 +218,12 @@ function displayData(photographer, medias) {
 			if (dateA > dateB) {
 				return 1;
 			}
-			// generateMedia();
-			// names must be equal
 
 			return 0;
 		});
 	}
-	sortMediabyDate();
 	generateHeader();
 	generatePrice();
-	// generateMedia();
 	updateTotalLikes(0);
 }
 
@@ -256,6 +263,7 @@ function initMedias(medias) {
 					currentIndex,
 					lightboxMediaContainer
 				);
+				// console.log(lightbox);
 				lightbox.showModal();
 
 				document

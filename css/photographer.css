@@ -270,7 +270,7 @@ article {
 	color: #901c1c;
 }
 
-#media-likes-container {
+.media-likes-container {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
