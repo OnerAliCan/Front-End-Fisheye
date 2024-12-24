@@ -59,8 +59,12 @@ function displayData(photographer, medias) {
 	}
 
 	function generateMedia() {
+		console.log(medias);
 		mediaSection.innerHTML = "";
-
+		document.addEventListener("keydown", consoleLog);
+		function consoleLog() {
+			console.log(medias);
+		}
 		medias.forEach((mediaData, index) => {
 			const mediaModel = mediaTemplate(
 				mediaData,
