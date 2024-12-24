@@ -20,6 +20,7 @@ async function getPhotographer(urlIdNumber) {
 		medias,
 	};
 }
+
 const mediaLikesContainerDiv = document.querySelector("media-likes-container");
 function getParams() {
 	const params = new URL(document.location).searchParams;
@@ -58,26 +59,16 @@ function displayData(photographer, medias) {
 	}
 
 	function generateMedia() {
-		// console.log(mediaSection);
-
 		mediaSection.innerHTML = "";
 
 		medias.forEach((mediaData, index) => {
-			console.log(mediaData.liked);
-
-			// mediaData.liked = false;
-			// console.log(JSON.stringify(medias, null, 2));
-
 			const mediaModel = mediaTemplate(
 				mediaData,
 				index,
 				medias.length,
 				updateTotalLikes
 			);
-			// console.log(JSON.stringify(medias, null, 2));
-			// console.log(mediaData.liked);
-			// console.log(liked);
-			// console.log(mediaData);
+
 			const mediaDOM = mediaModel.getMediaDOM();
 
 			mediaSection.appendChild(mediaDOM);
@@ -105,7 +96,6 @@ function displayData(photographer, medias) {
 	selected.setAttribute("data-value", "popularity"); // Valeur par défaut
 	sortMediabyLikes();
 	generateMedia();
-	// console.log(mediaData.liked);
 
 	// Toggle visibility of the dropdown
 	selected.addEventListener("click", () => {
@@ -113,13 +103,11 @@ function displayData(photographer, medias) {
 
 		options.classList.toggle("show");
 	});
-	// console.log(medias.liked);
 	options.addEventListener("click", (e) => {
 		// Remonte dans la hiérarchie DOM pour trouver le parent <li>
 		let targetLi = e.target.closest("li");
 		if (targetLi) {
 			const newValue = targetLi.innerText; // Nouveau texte
-			// console.log(targetLi.dataset.value);
 			if (targetLi.dataset.value === "popularity") {
 				initMedias(medias);
 				sortMediabyLikes();
@@ -175,7 +163,6 @@ function displayData(photographer, medias) {
 
 	function sortMediaByName() {
 		medias.sort((a, b) => {
-			// console.log(medias.likes);
 			const nameA = a.title.toUpperCase(); // ignore upper and lowercase
 			const nameB = b.title.toUpperCase(); // ignore upper and lowercase
 			if (nameA < nameB) {
@@ -190,8 +177,6 @@ function displayData(photographer, medias) {
 
 	function sortMediabyLikes() {
 		medias.sort((a, b) => {
-			// console.log(medias);
-
 			const likesA = a.likes;
 			const likesB = b.likes;
 
@@ -208,8 +193,6 @@ function displayData(photographer, medias) {
 
 	function sortMediabyDate() {
 		medias.sort((a, b) => {
-			// console.log(medias(likes));
-
 			const dateA = a.date;
 			const dateB = b.date;
 			if (dateA < dateB) {
@@ -235,6 +218,13 @@ function initModal(photographer) {
 		photographer["name"];
 }
 
+function setLiked(medias) {
+	medias.forEach((media) => {
+		media.liked = false;
+		return medias;
+	});
+	return medias;
+}
 function initMedias(medias) {
 	const mediaContainerArray =
 		document.getElementsByClassName("media-container");
@@ -263,7 +253,6 @@ function initMedias(medias) {
 					currentIndex,
 					lightboxMediaContainer
 				);
-				// console.log(lightbox);
 				lightbox.showModal();
 
 				document
@@ -357,6 +346,7 @@ function initMedias(medias) {
 async function init() {
 	const { urlIdNumber } = getParams();
 	const { photographer, medias } = await getPhotographer(urlIdNumber);
+	setLiked(medias);
 	displayData(photographer, medias);
 	initMedias(medias);
 	initModal(photographer);
