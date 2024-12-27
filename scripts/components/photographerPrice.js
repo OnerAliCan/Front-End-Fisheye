@@ -17,7 +17,17 @@ function priceTemplate(data) {
 	return { getPriceDOM };
 }
 
-function updateTotalLikes(change, likesTotalNumber) {
-	likesTotalNumber += change;
-	document.getElementById("total-likes").textContent = `${likesTotalNumber}`;
+function updateTotalLikes(change) {
+	let likesTotalNumber = medias.reduce(
+		(total, media) => total + media.likes,
+		0
+	);
+	let likesTotalNumberCopy = likesTotalNumber;
+	console.log(likesTotalNumberCopy);
+	likesTotalNumberCopy += change;
+	console.log(likesTotalNumberCopy);
+
+	document.getElementById(
+		"total-likes"
+	).textContent = `${likesTotalNumberCopy}`;
 }

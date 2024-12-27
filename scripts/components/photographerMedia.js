@@ -62,20 +62,20 @@ function mediaTemplate(
 	// console.log(likesTotalNumber);
 
 	function updateLikes(event) {
-		likesTotalNumber;
+		console.log(likesTotalNumber);
 		if (event.type === "click" || event.key === "Enter") {
 			if (mediaLiked) {
 				mediaLikesCount--;
 				mediaData.liked = false;
 				mediaLiked = mediaData.liked;
-				updateTotalLikes(-1, likesTotalNumber);
+				updateTotalLikes(-1);
 				mediaLikesContainer.removeChild(solidHeart);
 				mediaLikesContainer.appendChild(regularHeart);
 			} else {
 				mediaLikesCount++;
 				mediaData.liked = true;
 				mediaLiked = mediaData.liked;
-				updateTotalLikes(1, likesTotalNumber);
+				updateTotalLikes(1);
 				mediaLikesContainer.removeChild(regularHeart);
 				mediaLikesContainer.appendChild(solidHeart);
 			}

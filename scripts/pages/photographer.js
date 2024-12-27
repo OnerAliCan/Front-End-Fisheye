@@ -33,6 +33,8 @@ function getParams() {
 function displayData(photographer, medias, likesTotalNumber) {
 	const mediaSection = document.querySelector(".media-section");
 
+	document.addEventListener("click", () => console.log(likesTotalNumber));
+
 	function generateBanner() {
 		const bannerModel = bannerTemplate(photographer);
 		bannerModel.getPhotographerCardDOM();
@@ -73,7 +75,7 @@ function displayData(photographer, medias, likesTotalNumber) {
 
 	generateBanner();
 	generatePrice();
-	updateTotalLikes(0, likesTotalNumber);
+	updateTotalLikes(0);
 }
 
 function initModal(photographer) {
@@ -95,12 +97,9 @@ function setLiked(medias) {
 async function init() {
 	const { urlIdNumber } = getParams();
 	const { photographer, medias } = await getPhotographer(urlIdNumber);
-	let likesTotalNumber = medias.reduce(
-		(total, media) => total + media.likes,
-		0
-	);
+
 	setLiked(medias);
-	displayData(photographer, medias, likesTotalNumber);
+	displayData(photographer, medias);
 	initLightbox(medias);
 	initModal(photographer);
 }
