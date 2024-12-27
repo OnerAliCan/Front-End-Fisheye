@@ -1,4 +1,10 @@
-function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
+function mediaTemplate(
+	medias,
+	mediaData,
+	index,
+	mediaArrayLength,
+	updateTotalLikes
+) {
 	const {
 		id,
 		photographerId,
@@ -13,7 +19,6 @@ function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
 
 	let mediaName;
 	let mediaLiked = liked;
-
 	if (typeof image !== "undefined") {
 		mediaName = image;
 	} else {
@@ -60,14 +65,14 @@ function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
 				mediaLikesCount--;
 				mediaData.liked = false;
 				mediaLiked = mediaData.liked;
-				updateTotalLikes(-1);
+				updateTotalLikes(-1, medias);
 				mediaLikesContainer.removeChild(solidHeart);
 				mediaLikesContainer.appendChild(regularHeart);
 			} else {
 				mediaLikesCount++;
 				mediaData.liked = true;
 				mediaLiked = mediaData.liked;
-				updateTotalLikes(1);
+				updateTotalLikes(1, medias);
 				mediaLikesContainer.removeChild(regularHeart);
 				mediaLikesContainer.appendChild(solidHeart);
 			}

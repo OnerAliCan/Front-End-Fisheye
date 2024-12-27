@@ -21,7 +21,6 @@ async function getPhotographer(urlIdNumber) {
 	};
 }
 
-const mediaLikesContainerDiv = document.querySelector("media-likes-container");
 function getParams() {
 	const params = new URL(document.location).searchParams;
 	const urlId = params.get("id");
@@ -33,20 +32,7 @@ function getParams() {
 }
 
 function displayData(photographer, medias) {
-	const main = document.querySelector("main");
 	const mediaSection = document.querySelector(".media-section");
-
-	let likesTotalNumber = medias.reduce(
-		(total, media) => total + media.likes,
-		0
-	);
-
-	function updateTotalLikes(change) {
-		likesTotalNumber += change;
-		document.getElementById(
-			"total-likes"
-		).textContent = `${likesTotalNumber}`;
-	}
 
 	function generateHeader() {
 		const headerModel = headerTemplate(photographer);
@@ -63,6 +49,7 @@ function displayData(photographer, medias) {
 
 		medias.forEach((mediaData, index) => {
 			const mediaModel = mediaTemplate(
+				medias,
 				mediaData,
 				index,
 				medias.length,
@@ -72,17 +59,9 @@ function displayData(photographer, medias) {
 			const mediaDOM = mediaModel.getMediaDOM();
 
 			mediaSection.appendChild(mediaDOM);
-
-			mediaDOM
-				.querySelector(".media-likes-container")
-				.addEventListener("click", () => {
-					release(mediaData);
-				});
 		});
 	}
-	function release(mediaData) {
-		return mediaData;
-	}
+
 	const dropdown = document.querySelector("#sort-selector-container");
 	const selected = dropdown.querySelector("#sort-by-text");
 	const options = dropdown.querySelector("#sort-by-items");
@@ -106,16 +85,16 @@ function displayData(photographer, medias) {
 		if (targetLi) {
 			const newValue = targetLi.innerText; // Nouveau texte
 			if (targetLi.dataset.value === "popularity") {
-				sortMediabyLikes();
 				initMedias(medias);
+				sortMediabyLikes();
 				generateMedia();
 			} else if (targetLi.dataset.value === "date") {
-				sortMediabyDate();
 				initMedias(medias);
+				sortMediabyDate();
 				generateMedia();
 			} else if (targetLi.dataset.value === "title") {
-				sortMediaByName();
 				initMedias(medias);
+				sortMediaByName();
 				generateMedia();
 			}
 
@@ -210,7 +189,17 @@ function displayData(photographer, medias) {
 
 	generateHeader();
 	generatePrice();
-	updateTotalLikes(0);
+	updateTotalLikes(0, medias);
+}
+
+function updateTotalLikes(change, medias) {
+	console.log(medias);
+	let likesTotalNumber = medias.reduce(
+		(total, media) => total + media.likes,
+		0
+	);
+	likesTotalNumber += change;
+	document.getElementById("total-likes").textContent = `${likesTotalNumber}`;
 }
 
 function initModal(photographer) {
