@@ -25,10 +25,6 @@ function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
 	mediaLikesContainer.setAttribute("tabindex", "0");
 	const mediaLikes = document.createElement("p");
 
-	document.addEventListener("keydown", consoleLog);
-	function consoleLog() {
-		console.log(mediaData);
-	}
 	const regularHeart = document.createElement("img");
 	regularHeart.setAttribute("src", "assets/icons/heart-regular.svg");
 	const solidHeart = document.createElement("img");
@@ -50,7 +46,6 @@ function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
 		mediaLikesContainer.appendChild(solidHeart);
 	} else {
 		if (mediaLikesContainer.contains(solidHeart)) {
-			console.log("bonjour");
 			mediaLikesContainer.removeChild(solidHeart);
 			mediaLikesContainer.appendChild(regularHeart);
 		}
@@ -72,25 +67,14 @@ function mediaTemplate(mediaData, index, mediaArrayLength, updateTotalLikes) {
 				mediaLikesCount++;
 				mediaData.liked = true;
 				mediaLiked = mediaData.liked;
-
 				updateTotalLikes(1);
 				mediaLikesContainer.removeChild(regularHeart);
 				mediaLikesContainer.appendChild(solidHeart);
 			}
 			mediaLikes.textContent = `${mediaLikesCount}`;
-			handleMediaDataLiked(mediaLiked);
-
-			// console.log(mediaLiked);
 			return liked;
 		}
-		console.log(mediaData);
 		return liked;
-	}
-	// mediaLikesContainer.addEventListener("click", () => console.log(mediaData));
-	function handleMediaDataLiked(mediaLiked) {
-		// console.log(mediaLiked);
-
-		return mediaLiked;
 	}
 
 	function getMediaDOM() {

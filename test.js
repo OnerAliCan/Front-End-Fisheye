@@ -19,7 +19,6 @@ options.addEventListener("click", (e) => {
 	let targetLi = e.target.closest("li");
 
 	if (targetLi) {
-		// console.log(targetLi.dataset.value);
 		const newValue = targetLi.dataset.value; // Nouveau texte
 
 		// Mettre à jour le texte affiché
@@ -37,7 +36,6 @@ document.addEventListener("click", (e) => {
 	if (!dropdown.contains(e.target)) {
 		options.classList.remove("show");
 		selected.classList.add("show");
-		// console.log(selected);
 	}
 });
 

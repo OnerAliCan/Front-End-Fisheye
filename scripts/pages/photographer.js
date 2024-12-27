@@ -44,8 +44,8 @@ function displayData(photographer, medias) {
 	function updateTotalLikes(change) {
 		likesTotalNumber += change;
 		document.getElementById(
-			"total-likes-container"
-		).textContent = `${likesTotalNumber} likes`;
+			"total-likes"
+		).textContent = `${likesTotalNumber}`;
 	}
 
 	function generateHeader() {
@@ -59,12 +59,8 @@ function displayData(photographer, medias) {
 	}
 
 	function generateMedia() {
-		console.log(medias);
 		mediaSection.innerHTML = "";
-		document.addEventListener("keydown", consoleLog);
-		function consoleLog() {
-			console.log(medias);
-		}
+
 		medias.forEach((mediaData, index) => {
 			const mediaModel = mediaTemplate(
 				mediaData,
@@ -83,11 +79,8 @@ function displayData(photographer, medias) {
 					release(mediaData);
 				});
 		});
-
-		// return mediaData;
 	}
 	function release(mediaData) {
-		console.log(mediaData.liked);
 		return mediaData;
 	}
 	const dropdown = document.querySelector("#sort-selector-container");
@@ -113,16 +106,16 @@ function displayData(photographer, medias) {
 		if (targetLi) {
 			const newValue = targetLi.innerText; // Nouveau texte
 			if (targetLi.dataset.value === "popularity") {
-				initMedias(medias);
 				sortMediabyLikes();
+				initMedias(medias);
 				generateMedia();
 			} else if (targetLi.dataset.value === "date") {
-				initMedias(medias);
 				sortMediabyDate();
+				initMedias(medias);
 				generateMedia();
 			} else if (targetLi.dataset.value === "title") {
-				initMedias(medias);
 				sortMediaByName();
+				initMedias(medias);
 				generateMedia();
 			}
 
@@ -180,6 +173,8 @@ function displayData(photographer, medias) {
 	}
 
 	function sortMediabyLikes() {
+		console.log(medias);
+
 		medias.sort((a, b) => {
 			const likesA = a.likes;
 			const likesB = b.likes;
@@ -194,6 +189,7 @@ function displayData(photographer, medias) {
 			return 0;
 		});
 	}
+	console.log(medias);
 
 	function sortMediabyDate() {
 		medias.sort((a, b) => {
@@ -208,7 +204,10 @@ function displayData(photographer, medias) {
 
 			return 0;
 		});
+		console.log(medias);
 	}
+	console.log(medias);
+
 	generateHeader();
 	generatePrice();
 	updateTotalLikes(0);
@@ -238,9 +237,12 @@ function initMedias(medias) {
 	for (let i = 0; i < mediaContainerArrayLength; i++) {
 		mediaContainerArray[i].addEventListener("click", handleLightbox);
 		mediaContainerArray[i].addEventListener("keydown", handleLightbox);
+		// console.log(mediaContainerArray[i]);
 
 		function handleLightbox(event) {
 			if (event.type === "click" || event.key === "Enter") {
+				// console.log(mediaContainerArray[i]);
+
 				const lightboxMediaContainer =
 					document.getElementById("lightbox-img");
 

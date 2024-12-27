@@ -238,6 +238,18 @@ form input {
 	margin-right: 36px;
 }
 
+.total-likes-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 7px;
+}
+
+.total-likes-container img {
+	height: 18px;
+	width: 17px;
+}
+
 article {
 	width: 350px;
 	height: 351px;
