@@ -3,7 +3,8 @@ function mediaTemplate(
 	mediaData,
 	index,
 	mediaArrayLength,
-	updateTotalLikes
+	updateTotalLikes,
+	likesTotalNumber
 ) {
 	const {
 		id,
@@ -16,7 +17,6 @@ function mediaTemplate(
 		video,
 		liked,
 	} = mediaData;
-
 	let mediaName;
 	let mediaLiked = liked;
 	if (typeof image !== "undefined") {
@@ -55,24 +55,27 @@ function mediaTemplate(
 			mediaLikesContainer.appendChild(regularHeart);
 		}
 	}
+	// console.log(likesTotalNumber);
 
 	mediaLikesContainer.addEventListener("click", updateLikes);
 	mediaLikesContainer.addEventListener("keydown", updateLikes);
+	// console.log(likesTotalNumber);
 
 	function updateLikes(event) {
+		likesTotalNumber;
 		if (event.type === "click" || event.key === "Enter") {
 			if (mediaLiked) {
 				mediaLikesCount--;
 				mediaData.liked = false;
 				mediaLiked = mediaData.liked;
-				updateTotalLikes(-1, medias);
+				updateTotalLikes(-1, likesTotalNumber);
 				mediaLikesContainer.removeChild(solidHeart);
 				mediaLikesContainer.appendChild(regularHeart);
 			} else {
 				mediaLikesCount++;
 				mediaData.liked = true;
 				mediaLiked = mediaData.liked;
-				updateTotalLikes(1, medias);
+				updateTotalLikes(1, likesTotalNumber);
 				mediaLikesContainer.removeChild(regularHeart);
 				mediaLikesContainer.appendChild(solidHeart);
 			}

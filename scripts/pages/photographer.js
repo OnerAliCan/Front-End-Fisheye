@@ -30,7 +30,7 @@ function getParams() {
 		urlIdNumber,
 	};
 }
-function displayData(photographer, medias) {
+function displayData(photographer, medias, likesTotalNumber) {
 	const mediaSection = document.querySelector(".media-section");
 
 	function generateBanner() {
@@ -45,14 +45,14 @@ function displayData(photographer, medias) {
 
 	function generateMedia(medias) {
 		mediaSection.innerHTML = "";
-
 		medias.forEach((mediaData, index) => {
 			const mediaModel = mediaTemplate(
 				medias,
 				mediaData,
 				index,
 				medias.length,
-				updateTotalLikes
+				updateTotalLikes,
+				likesTotalNumber
 			);
 
 			const mediaDOM = mediaModel.getMediaDOM();
@@ -73,7 +73,7 @@ function displayData(photographer, medias) {
 
 	generateBanner();
 	generatePrice();
-	updateTotalLikes(0, medias);
+	updateTotalLikes(0, likesTotalNumber);
 }
 
 function initModal(photographer) {
@@ -95,8 +95,12 @@ function setLiked(medias) {
 async function init() {
 	const { urlIdNumber } = getParams();
 	const { photographer, medias } = await getPhotographer(urlIdNumber);
+	let likesTotalNumber = medias.reduce(
+		(total, media) => total + media.likes,
+		0
+	);
 	setLiked(medias);
-	displayData(photographer, medias);
+	displayData(photographer, medias, likesTotalNumber);
 	initLightbox(medias);
 	initModal(photographer);
 }
