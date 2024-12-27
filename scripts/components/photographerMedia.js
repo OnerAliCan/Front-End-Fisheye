@@ -56,10 +56,10 @@ function mediaTemplate(
 		}
 	}
 
-	mediaLikesContainer.addEventListener("click", handleTotalLikes);
-	mediaLikesContainer.addEventListener("keydown", handleTotalLikes);
+	mediaLikesContainer.addEventListener("click", updateLikes);
+	mediaLikesContainer.addEventListener("keydown", updateLikes);
 
-	function handleTotalLikes(event) {
+	function updateLikes(event) {
 		if (event.type === "click" || event.key === "Enter") {
 			if (mediaLiked) {
 				mediaLikesCount--;

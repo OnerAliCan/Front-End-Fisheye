@@ -16,3 +16,12 @@ function priceTemplate(data) {
 	}
 	return { getPriceDOM };
 }
+
+function updateTotalLikes(change, medias) {
+	let likesTotalNumber = medias.reduce(
+		(total, media) => total + media.likes,
+		0
+	);
+	likesTotalNumber += change;
+	document.getElementById("total-likes").textContent = `${likesTotalNumber}`;
+}
