@@ -30,10 +30,21 @@ function getParams() {
 		urlIdNumber,
 	};
 }
-function displayData(photographer, medias, likesTotalNumber) {
+function displayData(photographer, medias) {
 	const mediaSection = document.querySelector(".media-section");
 
 	document.addEventListener("click", () => console.log(likesTotalNumber));
+	let likesTotalNumber = medias.reduce(
+		(total, media) => total + media.likes,
+		0
+	);
+	function updateTotalLikes(change) {
+		likesTotalNumber += change;
+
+		document.getElementById(
+			"total-likes"
+		).textContent = `${likesTotalNumber}`;
+	}
 
 	function generateBanner() {
 		const bannerModel = bannerTemplate(photographer);
