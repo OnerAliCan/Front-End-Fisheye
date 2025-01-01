@@ -18,7 +18,6 @@ function bannerTemplate(data) {
 			profilePictureContainer.classList.add("profile-picture-container");
 			profilePicture.setAttribute("src", picture);
 			profilePicture.setAttribute("alt", name);
-
 			profilePictureContainer.appendChild(profilePicture);
 			photographerBanner.appendChild(profilePictureContainer);
 		}

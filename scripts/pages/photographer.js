@@ -38,6 +38,7 @@ function displayData(photographer, medias) {
 		(total, media) => total + media.likes,
 		0
 	);
+
 	function updateTotalLikes(change) {
 		likesTotalNumber += change;
 
@@ -83,7 +84,6 @@ function displayData(photographer, medias) {
 	generateMedia(medias);
 	handleDropdown(medias, selected, options, generateMedia);
 	closeDropdown(dropdown, options, selected);
-
 	generateBanner();
 	generatePrice();
 	updateTotalLikes(0);

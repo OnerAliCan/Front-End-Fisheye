@@ -32,10 +32,14 @@ function mediaTemplate(
 
 	const regularHeart = document.createElement("img");
 	regularHeart.setAttribute("src", "assets/icons/heart-regular.svg");
+	regularHeart.setAttribute("alt", "Empty heart image");
+
 	const solidHeart = document.createElement("img");
 	solidHeart.setAttribute("src", "../../assets/icons/heart-solid.svg");
-	regularHeart.id = "heart-svg";
-	solidHeart.id = "heart-svg";
+	regularHeart.setAttribute("alt", "Full heart image");
+
+	regularHeart.classList.add("heart-svg");
+	solidHeart.classList.add("heart-svg");
 
 	let mediaLikesCount = likes;
 
