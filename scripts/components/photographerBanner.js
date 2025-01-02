@@ -1,3 +1,5 @@
+// la fonction bannerTemplate est bien appelée dans photographer.js
+// eslint-disable-next-line no-unused-vars
 function bannerTemplate(data) {
 	const { name, portrait, city, country, tagline } = data;
 	const picture = `assets/photographers/${portrait}`;

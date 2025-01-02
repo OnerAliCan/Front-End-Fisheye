@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 function sortMediaByName(medias) {
 	medias.sort((a, b) => {
 		const nameA = a.title.toUpperCase(); // ignore upper and lowercase

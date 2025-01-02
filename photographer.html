@@ -27,7 +27,7 @@
         Popularité
         <img id="chevron-icon-down" src="assets/icons/chevron-down.svg" alt="chevron icon down">
       </div>
-      <ul id="sort-by-items">
+      <ul id="sort-by-list">
         <li data-value="popularity" id="popularity-item" class="list-item" tabindex="0">
           <div id="popularity-container">
             Popularité
@@ -60,19 +60,19 @@
     </header>
     <div class="modal-body">
       <form name="reserve" action="index.html" onsubmit="return validate();" novalidate>
-        <div class="formData">
+        <div class="form-data">
           <label for="first">Prénom</label>
           <input class="text-control" type="text" id="first" name="first" minlength="2" data-error-visible="false" />
         </div>
-        <div class="formData">
+        <div class="form-data">
           <label for="last">Nom</label>
           <input class="text-control" type="text" id="last" name="last" />
         </div>
-        <div class="formData">
+        <div class="form-data">
           <label for="email">E-mail</label>
           <input class="text-control" type="email" id="email" name="email" />
         </div>
-        <div class="formData">
+        <div class="form-data">
           <label for="message">Votre Message</label>
           <textarea name="message" id="message"></textarea>
         </div>
