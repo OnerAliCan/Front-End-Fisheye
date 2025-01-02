@@ -163,7 +163,7 @@ form input {
 .form-data[data-error]::after {
   content: attr(data-error);
   font-size: 1em;
-  color: #e54858;
+  color: #fff;
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;

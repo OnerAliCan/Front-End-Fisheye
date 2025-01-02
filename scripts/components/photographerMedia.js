@@ -22,11 +22,9 @@ function mediaTemplate(
 
   const regularHeart = document.createElement("img");
   regularHeart.setAttribute("src", "assets/icons/heart-regular.svg");
-  regularHeart.setAttribute("alt", "Empty heart image");
 
   const solidHeart = document.createElement("img");
   solidHeart.setAttribute("src", "../../assets/icons/heart-solid.svg");
-  regularHeart.setAttribute("alt", "Full heart image");
 
   regularHeart.classList.add("heart-svg");
   solidHeart.classList.add("heart-svg");
@@ -36,6 +34,7 @@ function mediaTemplate(
   mediaLikes.textContent = `${mediaLikesCount}`;
   mediaLikesContainer.appendChild(mediaLikes);
   mediaLikesContainer.appendChild(regularHeart);
+  regularHeart.setAttribute("alt", "Empty heart image");
 
   if (liked === true) {
     mediaLikesCount++;
@@ -43,6 +42,7 @@ function mediaTemplate(
 
     mediaLikesContainer.removeChild(regularHeart);
     mediaLikesContainer.appendChild(solidHeart);
+    regularHeart.setAttribute("alt", "Full heart image");
   } else {
     if (mediaLikesContainer.contains(solidHeart)) {
       mediaLikesContainer.removeChild(solidHeart);
@@ -62,6 +62,7 @@ function mediaTemplate(
         updateTotalLikes(-1);
         mediaLikesContainer.removeChild(solidHeart);
         mediaLikesContainer.appendChild(regularHeart);
+        regularHeart.setAttribute("alt", "Empty heart image");
       } else {
         mediaLikesCount++;
         mediaData.liked = true;
@@ -69,6 +70,7 @@ function mediaTemplate(
         updateTotalLikes(1);
         mediaLikesContainer.removeChild(regularHeart);
         mediaLikesContainer.appendChild(solidHeart);
+        solidHeart.setAttribute("alt", "Full heart image");
       }
       mediaLikes.textContent = `${mediaLikesCount}`;
       return liked;

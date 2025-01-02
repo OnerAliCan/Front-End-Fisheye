@@ -53,7 +53,7 @@ function verifyFirstName() {
 
     return false;
   } else {
-    console.log("prenom ok");
+    console.log(document.getElementById("first").value);
     formData[0].removeAttribute("data-error");
     formData[0].setAttribute("data-error-visible", "false");
     return true;
@@ -72,7 +72,7 @@ function verifyLastName() {
     formData[1].setAttribute("data-error-visible", "true");
     return false;
   } else {
-    console.log("nom de famille ok");
+    console.log(document.getElementById("last").value);
     formData[1].removeAttribute("data-error");
     formData[1].setAttribute("data-error-visible", "false");
     return true;
@@ -88,7 +88,7 @@ function verifyEmail() {
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,63}$/
       )
   ) {
-    console.log("mail ok");
+    console.log(document.getElementById("email").value);
     formData[2].removeAttribute("data-error");
     formData[2].setAttribute("data-error-visible", "false");
     return true;
@@ -115,7 +115,7 @@ function verifyMessage() {
     formData[3].setAttribute("data-error-visible", "true");
     return false;
   } else {
-    console.log("message ok");
+    console.log(document.getElementById("message").value);
     formData[3].removeAttribute("data-error");
     formData[3].setAttribute("data-error-visible", "false");
 
