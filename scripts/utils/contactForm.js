@@ -1,17 +1,24 @@
 /* eslint-disable no-unused-vars */
 function displayModal() {
   document.getElementById("modal").showModal();
+  document.body.classList.add("no-scroll");
 }
 
 function closeModal() {
   const modal = document.getElementById("modal");
   modal.close();
+  // document.body.classList.remove("no-scroll");
 
   const lightboxModal = document.getElementById("lightbox");
 
   lightboxModal.close();
 }
 
+const modal = document.getElementById("modal");
+
+modal.addEventListener("close", () => {
+  document.body.classList.remove("no-scroll");
+});
 // function validate
 
 function validate() {

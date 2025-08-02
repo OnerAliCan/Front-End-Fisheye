@@ -49,36 +49,40 @@
     </div>
   </main>
   <dialog id="modal">
-    <header id="modal-header">
-      <div id="contact-name-container">
-        <h2>Contactez-moi</h2>
-        <h2 id="contact-me-name"></h2>
+    <div class="form-container">
+      <div id="modal-header">
+        <div id="contact-name-container">
+          <h2 class="contact-me-text">Contactez-moi</h2>
+          <h2 class="contact-me-text" id="contact-me-name"></h2>
+        </div>
+        <div class="close-modal-container">
+          <img src="assets/icons/close.svg" onclick="closeModal()" alt="Bouton fermer" tabindex="0" />
+        </div>
       </div>
-      <div class="close-modal-container">
-        <img src="assets/icons/close.svg" onclick="closeModal()" alt="Bouton fermer" tabindex="0" />
+      <div class="modal-body">
+        <form name="reserve" action="index.html" onsubmit="return validate();" novalidate>
+          <div class="form-data">
+            <label for="first">Prénom</label>
+            <input class="text-control" type="text" id="first" name="first" minlength="2" data-error-visible="false" />
+          </div>
+          <div class="form-data">
+            <label for="last">Nom</label>
+            <input class="text-control" type="text" id="last" name="last" />
+          </div>
+          <div class="form-data">
+            <label for="email">E-mail</label>
+            <input class="text-control" type="email" id="email" name="email" />
+          </div>
+          <div class="form-data">
+            <label for="message">Votre Message</label>
+            <textarea name="message" id="message"></textarea>
+          </div>
       </div>
-    </header>
-    <div class="modal-body">
-      <form name="reserve" action="index.html" onsubmit="return validate();" novalidate>
-        <div class="form-data">
-          <label for="first">Prénom</label>
-          <input class="text-control" type="text" id="first" name="first" minlength="2" data-error-visible="false" />
-        </div>
-        <div class="form-data">
-          <label for="last">Nom</label>
-          <input class="text-control" type="text" id="last" name="last" />
-        </div>
-        <div class="form-data">
-          <label for="email">E-mail</label>
-          <input class="text-control" type="email" id="email" name="email" />
-        </div>
-        <div class="form-data">
-          <label for="message">Votre Message</label>
-          <textarea name="message" id="message"></textarea>
-        </div>
+      <div class="send-button-container">
+        <button class="contact-button" id="send-button">Envoyer</button>
+      </div>
+      </form>
     </div>
-    <button class="contact-button" id="send-button">Envoyer</button>
-    </form>
     </div>
   </dialog>
   <dialog id="lightbox">

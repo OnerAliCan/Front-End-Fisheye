@@ -1,6 +1,10 @@
 main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding-right: 100px;
   padding-left: 100px;
+  padding-bottom: 25px;
 }
 
 .modal-body {
@@ -8,13 +12,14 @@ main {
 }
 
 .photographer-banner {
+  flex: 1;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   background-color: #fafafa;
   height: 300px;
-  max-width: 1340px;
 }
 
 #message {
@@ -23,6 +28,11 @@ main {
   border: none;
   border-radius: 5px;
   font-size: 36px;
+}
+
+.contact-button-container {
+  display: flex;
+  align-items: start;
 }
 
 .contact-button {
@@ -44,60 +54,77 @@ main {
   color: #000;
 }
 
-#send-button {
-  margin-top: 11px;
+.send-button-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
 }
 
 .media-section {
   display: grid;
   grid-template-columns: 350px 350px 350px;
-  gap: 20px 95px;
+  gap: 30px 95px;
   margin-top: 23px;
-}
-
-dialog {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 900px;
-  margin-bottom: 62px;
-  margin-top: 62px;
-  border: none;
 }
 
 dialog:not([open]) {
   display: none;
 }
 
-dialog::backdrop {
+#modal::backdrop {
   background-color: white;
-  opacity: 1;
+  opacity: 0.3;
 }
 
-#modal {
-  height: 1000px;
-  border-radius: 5px;
-  background-color: #db8876;
-  width: 50%;
+#modal[open] {
+  all: unset;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  max-height: 1024px;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.form-container {
+  box-sizing: border-box;
+  width: 46%;
   max-width: 669px;
+  background-color: #db8876;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 25px 35px 38px;
+  padding: 35px;
+  border-radius: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  overflow: hidden;
 }
 
-#modal header {
+#modal-header {
   justify-content: space-between;
   width: 100%;
   display: flex;
-  height: 150px;
-  margin-bottom: 50px;
+  align-items: start;
 }
 
 .contact-name-container {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+}
+
+.contact-me-text {
+  font-size: 50px;
+  margin: 0;
+  font-weight: 400;
+  line-height: 70px;
 }
 
 .close-modal-container img {
@@ -116,7 +143,7 @@ dialog::backdrop {
 .photographer-information-container h2 {
   font-size: 64px;
   font-weight: 400;
-  line-height: 83.33px;
+  line-height: 83px;
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
@@ -129,6 +156,8 @@ dialog::backdrop {
 }
 
 .close-modal-container {
+  display: flex;
+  align-items: start;
   height: 100%;
 }
 
@@ -141,7 +170,7 @@ form {
 
 form label {
   color: #312e2e;
-  font-size: 36px;
+  font-size: 30px;
 }
 
 form div {
@@ -154,7 +183,7 @@ form div {
 
 form input {
   width: 100%;
-  height: 68px;
+  height: 60px;
   border: none;
   border-radius: 5px;
   font-size: 36px;
@@ -175,6 +204,7 @@ form input {
 
 .form-data[data-error-visible="true"]::after {
   opacity: 1;
+  margin-bottom: 0;
 }
 
 .form-data[data-error-visible="true"] .text-control {
@@ -246,10 +276,13 @@ form input {
 article {
   width: 350px;
   height: 351px;
+  display: flex;
+  flex-direction: column;
 }
 
 .media-container {
   display: flex;
+  flex: 1 1 400px;
   overflow: hidden;
   width: 100%;
   height: 300px;
@@ -263,6 +296,7 @@ article {
   transform-origin: center;
   object-fit: cover;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .media-title-container {
@@ -301,12 +335,26 @@ article {
   margin-left: 6px;
 }
 
-#lightbox {
-  height: 962px;
+#lightbox[open] {
+  margin-bottom: 0;
+  margin-top: 30px;
+  border: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0;
-  margin-top: 62px;
-  margin-left: 99px;
-  margin-right: 99px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#lightbox::backdrop {
+  background-color: white;
+  opacity: 1;
 }
 
 #lightbox:focus-visible {
@@ -314,17 +362,18 @@ article {
 }
 
 #lightbox-container {
-  display: flex;
-  box-sizing: border-box;
+  height: 100%;
+  max-width: 90vw;
   width: 1242px;
   margin: 0;
   padding: 0;
+  background-color: #fff;
+  border-radius: 5px;
   overflow: hidden;
+  display: flex;
 }
 
 #lightbox-img {
-  width: 1050px;
-  height: 900px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -349,19 +398,22 @@ article {
   height: 900px;
   object-fit: cover;
   margin: 0;
+  max-width: 100%;
+  max-height: 90vh;
 }
 
-.left-arrow-container {
+.left-arrow-container,
+.right-arrow-container {
   display: flex;
   width: 96px;
-  height: 900px;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
 
-#lightbox-img-title-container {
-  height: 962px;
-}
+/* #lightbox-img-title-container {
+  max-height: 95vh;
+} */
 
 #lightbox-media-title {
   color: #901c1c;
@@ -375,16 +427,23 @@ article {
   width: 96px;
   height: 100%;
   align-items: flex-start;
+  position: relative;
 }
 
-.close-lightbox-container,
+.close-lightbox-container {
+  position: absolute;
+  top: 0;
+  right: 25px;
+}
+
+/* .close-lightbox-container,
 .right-arrow-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   height: 450px;
   width: 100%;
-}
+} */
 
 .right-arrow-container {
   margin-top: -24px;
@@ -394,6 +453,7 @@ article {
   display: flex;
   align-items: center;
   height: 62px;
+  margin-bottom: 19px;
 }
 
 #modal header img {
@@ -407,6 +467,7 @@ article {
 }
 
 #sort-selector-container {
+  align-self: start;
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -547,4 +608,12 @@ article {
 #chevron-icon-down {
   width: 32px;
   height: 20px;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+body.no-scroll {
+  overflow: hidden;
 }
