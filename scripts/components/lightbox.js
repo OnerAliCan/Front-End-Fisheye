@@ -122,7 +122,6 @@ function generateLightbox(mediaData) {
 
   const path = `assets/images/${photographerId}/${mediaName}`;
   const lightboxTitle = document.getElementById("lightbox-media-title");
-  // let lightboxMediaTitle = title;
 
   function getLightboxDOM(lightbox, medias, media, i, lightboxMediaContainer) {
     function lightboxContent() {

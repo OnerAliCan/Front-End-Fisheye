@@ -15,14 +15,12 @@ async function displayData(photographers) {
   const photographersSection = document.querySelector(".photographer-section");
 
   photographers.forEach((photographer) => {
-    // eslint-disable-next-line no-undef
     const photographerModel = photographerTemplate(photographer);
     const userCardDOM = photographerModel.getUserCardDOM();
     photographersSection.appendChild(userCardDOM);
   });
 }
 
-//fonction
 async function init() {
   const { photographers } = await getPhotographers();
   displayData(photographers);

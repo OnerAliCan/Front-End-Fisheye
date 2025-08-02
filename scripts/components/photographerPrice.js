@@ -1,19 +1,18 @@
-// eslint-disable-next-line no-unused-vars
 function priceTemplate(data) {
-	const { price } = data;
+  const { price } = data;
 
-	function getPriceDOM() {
-		const priceContainer = document.getElementById("div");
+  function getPriceDOM() {
+    const priceContainer = document.getElementById("div");
 
-		function generatePrice() {
-			const photographerPrice = document.getElementById(
-				"daily-price-container"
-			);
-			photographerPrice.textContent = price + " € / jour";
-		}
+    function generatePrice() {
+      const photographerPrice = document.getElementById(
+        "daily-price-container"
+      );
+      photographerPrice.textContent = price + " € / jour";
+    }
 
-		generatePrice();
-		return priceContainer;
-	}
-	return { getPriceDOM };
+    generatePrice();
+    return priceContainer;
+  }
+  return { getPriceDOM };
 }

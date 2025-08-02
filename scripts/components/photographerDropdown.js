@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 function handleDropdown(medias, selected, options, generateMedia) {
   selected.addEventListener("click", initDropdown);
   selected.addEventListener("keydown", initDropdown);

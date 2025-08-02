@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 function displayModal() {
   document.getElementById("modal").showModal();
   document.body.classList.add("no-scroll");
@@ -7,7 +6,6 @@ function displayModal() {
 function closeModal() {
   const modal = document.getElementById("modal");
   modal.close();
-  // document.body.classList.remove("no-scroll");
 
   const lightboxModal = document.getElementById("lightbox");
 
@@ -37,7 +35,6 @@ function validate() {
   }
 
   if (formValid) {
-    // document.forms["reserve"].reset();
     closeModal();
   }
 

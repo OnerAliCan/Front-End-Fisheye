@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 async function getPhotographer(urlIdNumber) {
   const response = await fetch("./data/photographers.json");
   const data = await response.json();
