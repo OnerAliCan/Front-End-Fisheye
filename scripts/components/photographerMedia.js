@@ -34,7 +34,7 @@ function mediaTemplate(
   mediaLikes.textContent = `${mediaLikesCount}`;
   mediaLikesContainer.appendChild(mediaLikes);
   mediaLikesContainer.appendChild(regularHeart);
-  regularHeart.setAttribute("alt", "Empty heart image");
+  regularHeart.setAttribute("alt", "Image coeur vide");
 
   if (liked === true) {
     mediaLikesCount++;
@@ -42,7 +42,7 @@ function mediaTemplate(
 
     mediaLikesContainer.removeChild(regularHeart);
     mediaLikesContainer.appendChild(solidHeart);
-    regularHeart.setAttribute("alt", "Full heart image");
+    regularHeart.setAttribute("alt", "Image coeur rempli");
   } else {
     if (mediaLikesContainer.contains(solidHeart)) {
       mediaLikesContainer.removeChild(solidHeart);
@@ -62,7 +62,7 @@ function mediaTemplate(
         updateTotalLikes(-1);
         mediaLikesContainer.removeChild(solidHeart);
         mediaLikesContainer.appendChild(regularHeart);
-        regularHeart.setAttribute("alt", "Empty heart image");
+        regularHeart.setAttribute("alt", "Image coeur vide");
       } else {
         mediaLikesCount++;
         mediaData.liked = true;
@@ -70,7 +70,7 @@ function mediaTemplate(
         updateTotalLikes(1);
         mediaLikesContainer.removeChild(regularHeart);
         mediaLikesContainer.appendChild(solidHeart);
-        solidHeart.setAttribute("alt", "Full heart image");
+        solidHeart.setAttribute("alt", "Image coeur rempli image");
       }
       mediaLikes.textContent = `${mediaLikesCount}`;
       return liked;
